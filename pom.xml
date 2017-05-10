@@ -91,7 +91,7 @@
                 <mysql.username>root</mysql.username>
                 <mysql.password>123456</mysql.password>
                 <mysql.url>
-                    jdbc:mysql://127.0.0.1:3306/test?allowMultiQueries=true&amp;tinyInt1isBit=false
+                    jdbc:mysql://127.0.0.1:3306/test?allowMultiQueries=true&amp;tinyInt1isBit=false&amp;zeroDateTimeBehavior=convertToNull
                 </mysql.url>
             </properties>
         </profile>

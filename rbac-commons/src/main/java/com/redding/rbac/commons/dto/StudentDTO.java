@@ -1,4 +1,4 @@
-package com.redding.rbac.service.dto;
+package com.redding.rbac.commons.dto;
 
 /**
  * @Author: wurenqing

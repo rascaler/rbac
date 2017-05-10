@@ -2,11 +2,11 @@ package com.redding.rbac.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.redding.rbac.commons.dto.StudentDTO;
 import com.redding.rbac.commons.utils.BeanMapper;
 import com.redding.rbac.dao.domain.Student;
 import com.redding.rbac.dao.utils.MyMapper;
 import com.redding.rbac.service.StudentService;
-import com.redding.rbac.service.dto.StudentDTO;
 import com.redding.rbac.service.utils.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

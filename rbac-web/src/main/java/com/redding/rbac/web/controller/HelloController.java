@@ -2,9 +2,9 @@ package com.redding.rbac.web.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.redding.rbac.commons.constant.BasicEcode;
+import com.redding.rbac.commons.dto.StudentDTO;
 import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.service.StudentService;
-import com.redding.rbac.service.dto.StudentDTO;
 import com.redding.rbac.web.annotation.OuterResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

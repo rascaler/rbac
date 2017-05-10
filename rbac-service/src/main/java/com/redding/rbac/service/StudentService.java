@@ -1,8 +1,8 @@
 package com.redding.rbac.service;
 
 import com.github.pagehelper.PageInfo;
+import com.redding.rbac.commons.dto.StudentDTO;
 import com.redding.rbac.dao.domain.Student;
-import com.redding.rbac.service.dto.StudentDTO;
 import com.redding.rbac.service.utils.IService;
 
 import java.util.List;

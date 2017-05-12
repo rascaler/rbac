@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @Date 2017/5/12 17:24
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:test-service-applicationContext.xml"})
+@ContextConfiguration({"classpath:test-spring-context.xml"})
 public class ServiceTest {
 
     @Autowired

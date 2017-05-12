@@ -1,4 +1,4 @@
-package com.redding.rbac.web.context;
+package com.redding.rbac.web.utils.context;
 
 /**
  * ClassName: ResponseBodyWrapHandler
@@ -7,8 +7,8 @@ package com.redding.rbac.web.context;
  * Created by wurenqing on 2017/3/20.
  */
 
-import com.redding.rbac.web.annotation.OuterResponseBody;
-import com.redding.rbac.web.bean.OuterResult;
+import com.redding.rbac.web.utils.annotation.OuterResponseBody;
+import com.redding.rbac.web.utils.bean.OuterResult;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;

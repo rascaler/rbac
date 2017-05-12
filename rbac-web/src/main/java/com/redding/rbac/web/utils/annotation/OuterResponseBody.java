@@ -1,4 +1,4 @@
-package com.redding.rbac.web.annotation;
+package com.redding.rbac.web.utils.annotation;
 
 import java.lang.annotation.*;
 

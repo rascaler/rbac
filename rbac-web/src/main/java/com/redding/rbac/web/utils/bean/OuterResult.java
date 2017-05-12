@@ -1,4 +1,4 @@
-package com.redding.rbac.web.bean;
+package com.redding.rbac.web.utils.bean;
 
 /**
  * Created by wurenqing on 2017/3/20.

@@ -1,7 +1,7 @@
-package com.redding.rbac.web.context;
+package com.redding.rbac.web.utils.context;
 
 import com.redding.rbac.commons.exception.SPIException;
-import com.redding.rbac.web.bean.OuterResult;
+import com.redding.rbac.web.utils.bean.OuterResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.MethodNotSupportedException;
 import org.slf4j.Logger;

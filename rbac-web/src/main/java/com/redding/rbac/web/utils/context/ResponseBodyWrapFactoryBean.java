@@ -1,9 +1,7 @@
-package com.redding.rbac.web.context;
+package com.redding.rbac.web.utils.context;
 
-import com.redding.rbac.web.utils.DateConverter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
@@ -36,14 +34,13 @@ public class ResponseBodyWrapFactoryBean implements InitializingBean {
         List<HandlerMethodReturnValueHandler> returnValueHandlers = adapter.getReturnValueHandlers();
         List<HandlerMethodReturnValueHandler> handlers = new ArrayList<>(returnValueHandlers);
         decorateResponseHandlers(handlers);
-        decorateRequestConvert();
         adapter.setReturnValueHandlers(handlers);
     }
 
     private void decorateResponseHandlers(List<HandlerMethodReturnValueHandler> handlers) {
         List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
         
-        MappingJackson2HttpMessageConverter converter = ApplicationContextProvider.getBeanByClass(MappingJackson2HttpMessageConverter.class);
+        MappingJackson2HttpMessageConverter converter = ApplicationContextUtils.getBeanByClass(MappingJackson2HttpMessageConverter.class);
 
         messageConverters.add(converter);
 
@@ -51,9 +48,6 @@ public class ResponseBodyWrapFactoryBean implements InitializingBean {
         handlers.add(0, handler);
     }
 
-    private void decorateRequestConvert(){
 
-//        genericConversionService.addConverter(new DateConverter());
-    }
 
 }

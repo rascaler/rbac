@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.redding.rbac.commons.utils.json.DateJsonDeserializer;
 import com.redding.rbac.service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,8 @@ import java.util.Date;
 @Controller
 public class TestController {
 
-    @Autowired
-    private EnterpriseService enterpriseService;
+    @Value("${server.port}")
+    private String serverPort;
 
     @RequestMapping(value = "/test",method = RequestMethod.POST)
     @ResponseBody

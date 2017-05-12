@@ -26,6 +26,7 @@ public class HelloController {
     @RequestMapping("/")
     @ResponseBody
     String home() {
+        enterpriseService.getById(1);
         return "Hello World!";
     }
 

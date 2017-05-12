@@ -11,7 +11,7 @@ import org.springframework.context.annotation.PropertySource;
  * @Date 2017/4/1 14:43
  */
 @SpringBootApplication
-@ImportResource({"classpath:service-applicationContext.xml"})
+@ImportResource({"classpath:service-applicationContext.xml","classpath:web-applicationContext.xml"})
 @PropertySource({"classpath:application.properties"})
 public class WebApplication {
 

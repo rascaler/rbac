@@ -1,7 +1,9 @@
 package com.redding.rbac.web.context;
 
+import com.redding.rbac.web.utils.DateConverter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
@@ -27,15 +29,18 @@ public class ResponseBodyWrapFactoryBean implements InitializingBean {
     @Autowired
     private RequestMappingHandlerAdapter adapter;
 
+
+
     @Override
     public void afterPropertiesSet() throws Exception {
         List<HandlerMethodReturnValueHandler> returnValueHandlers = adapter.getReturnValueHandlers();
         List<HandlerMethodReturnValueHandler> handlers = new ArrayList<>(returnValueHandlers);
-        decorateHandlers(handlers);
+        decorateResponseHandlers(handlers);
+        decorateRequestConvert();
         adapter.setReturnValueHandlers(handlers);
     }
 
-    private void decorateHandlers(List<HandlerMethodReturnValueHandler> handlers) {
+    private void decorateResponseHandlers(List<HandlerMethodReturnValueHandler> handlers) {
         List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
         
         MappingJackson2HttpMessageConverter converter = ApplicationContextProvider.getBeanByClass(MappingJackson2HttpMessageConverter.class);
@@ -44,6 +49,11 @@ public class ResponseBodyWrapFactoryBean implements InitializingBean {
 
         ResponseBodyWrapHandler handler = new ResponseBodyWrapHandler(messageConverters);
         handlers.add(0, handler);
+    }
+
+    private void decorateRequestConvert(){
+
+//        genericConversionService.addConverter(new DateConverter());
     }
 
 }

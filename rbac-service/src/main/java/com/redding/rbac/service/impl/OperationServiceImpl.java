@@ -1,8 +1,8 @@
 package com.redding.rbac.service.impl;
 
-import com.redding.rbac.dao.domain.Operation;
 import com.redding.rbac.service.OperationService;
-import com.redding.rbac.service.utils.BaseService;
+import org.springframework.stereotype.Service;
 
-public class OperationServiceImpl extends BaseService<Operation> implements OperationService {
+@Service
+public class OperationServiceImpl implements OperationService {
 }

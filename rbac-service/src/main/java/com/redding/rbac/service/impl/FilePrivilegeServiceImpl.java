@@ -1,8 +1,8 @@
 package com.redding.rbac.service.impl;
 
-import com.redding.rbac.dao.domain.FilePrivilege;
 import com.redding.rbac.service.FilePrivilegeService;
-import com.redding.rbac.service.utils.BaseService;
+import org.springframework.stereotype.Service;
 
-public class FilePrivilegeServiceImpl extends BaseService<FilePrivilege> implements FilePrivilegeService {
+@Service
+public class FilePrivilegeServiceImpl implements FilePrivilegeService {
 }

@@ -1,8 +1,8 @@
 package com.redding.rbac.service.impl;
 
-import com.redding.rbac.dao.domain.File;
 import com.redding.rbac.service.FileService;
-import com.redding.rbac.service.utils.BaseService;
+import org.springframework.stereotype.Service;
 
-public class FileServiceImpl extends BaseService<File> implements FileService {
+@Service
+public class FileServiceImpl implements FileService {
 }

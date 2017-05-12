@@ -8,8 +8,10 @@ import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.redding.rbac.service.EnterpriseService;
 import com.redding.rbac.web.utils.DateConverter;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,8 @@ import java.util.Date;
 @Controller
 public class TestController {
 
-
+    @Autowired
+    private EnterpriseService enterpriseService;
 
     @RequestMapping(value = "/test",method = RequestMethod.POST)
     @ResponseBody
@@ -48,7 +51,19 @@ public class TestController {
     String test3(Test2 test2) {
         return "Hello World2!";
     }
+
+    @RequestMapping(value = "/test4",method = RequestMethod.GET)
+    @ResponseBody
+    String test4() {
+        return "Hello World4!";
+    }
+
+
 }
+
+
+
+
 
 class Test implements Serializable{
 

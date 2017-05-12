@@ -1,8 +1,8 @@
 package com.redding.rbac.service.impl;
 
-import com.redding.rbac.dao.domain.RolePrivilege;
 import com.redding.rbac.service.RolePrivilegeService;
-import com.redding.rbac.service.utils.BaseService;
+import org.springframework.stereotype.Service;
 
-public class RolePrivilegeServiceImpl extends BaseService<RolePrivilege> implements RolePrivilegeService {
+@Service
+public class RolePrivilegeServiceImpl implements RolePrivilegeService {
 }

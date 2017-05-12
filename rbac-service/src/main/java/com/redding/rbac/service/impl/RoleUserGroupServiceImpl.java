@@ -1,8 +1,8 @@
 package com.redding.rbac.service.impl;
 
-import com.redding.rbac.dao.domain.RoleUserGroup;
 import com.redding.rbac.service.RoleUserGroupService;
-import com.redding.rbac.service.utils.BaseService;
+import org.springframework.stereotype.Service;
 
-public class RoleUserGroupServiceImpl extends BaseService<RoleUserGroup> implements RoleUserGroupService {
+@Service
+public class RoleUserGroupServiceImpl implements RoleUserGroupService {
 }

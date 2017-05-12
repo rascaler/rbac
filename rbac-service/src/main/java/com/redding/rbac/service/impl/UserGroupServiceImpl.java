@@ -1,8 +1,8 @@
 package com.redding.rbac.service.impl;
 
-import com.redding.rbac.dao.domain.UserGroup;
 import com.redding.rbac.service.UserGroupService;
-import com.redding.rbac.service.utils.BaseService;
+import org.springframework.stereotype.Service;
 
-public class UserGroupServiceImpl extends BaseService<UserGroup> implements UserGroupService {
+@Service
+public class UserGroupServiceImpl implements UserGroupService {
 }

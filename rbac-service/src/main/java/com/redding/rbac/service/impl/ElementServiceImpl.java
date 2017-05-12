@@ -1,8 +1,8 @@
 package com.redding.rbac.service.impl;
 
-import com.redding.rbac.dao.domain.Element;
 import com.redding.rbac.service.ElementService;
-import com.redding.rbac.service.utils.BaseService;
+import org.springframework.stereotype.Service;
 
-public class ElementServiceImpl extends BaseService<Element> implements ElementService {
+@Service
+public class ElementServiceImpl implements ElementService {
 }

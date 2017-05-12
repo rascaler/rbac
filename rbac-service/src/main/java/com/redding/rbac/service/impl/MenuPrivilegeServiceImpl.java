@@ -1,8 +1,8 @@
 package com.redding.rbac.service.impl;
 
-import com.redding.rbac.dao.domain.MenuPrivilege;
 import com.redding.rbac.service.MenuPrivilegeService;
-import com.redding.rbac.service.utils.BaseService;
+import org.springframework.stereotype.Service;
 
-public class MenuPrivilegeServiceImpl extends BaseService<MenuPrivilege> implements MenuPrivilegeService {
+@Service
+public class MenuPrivilegeServiceImpl implements MenuPrivilegeService {
 }

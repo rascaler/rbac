@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>rbac-dao</module>
+        <module>rbac-infrastructure</module>
         <module>rbac-service</module>
         <module>rbac-web</module>
         <module>rbac-commons</module>
@@ -123,7 +123,7 @@
                 <mysql.username>root</mysql.username>
                 <mysql.password>123456</mysql.password>
                 <mysql.url>
-                    jdbc:mysql://127.0.0.1:3306/test?allowMultiQueries=true&amp;tinyInt1isBit=false&amp;zeroDateTimeBehavior=convertToNull
+                    jdbc:mysql://127.0.0.1:3306/rbac?allowMultiQueries=true&amp;tinyInt1isBit=false&amp;zeroDateTimeBehavior=convertToNull
                 </mysql.url>
             </properties>
         </profile>

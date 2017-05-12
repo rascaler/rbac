@@ -1,8 +1,8 @@
 package com.redding.rbac.service.impl;
 
-import com.redding.rbac.dao.domain.OrganizationUser;
 import com.redding.rbac.service.OrganizationUserService;
-import com.redding.rbac.service.utils.BaseService;
+import org.springframework.stereotype.Service;
 
-public class OrganizationUserServiceImpl extends BaseService<OrganizationUser> implements OrganizationUserService {
+@Service
+public class OrganizationUserServiceImpl implements OrganizationUserService {
 }

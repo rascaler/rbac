@@ -1,8 +1,8 @@
 package com.redding.rbac.service.impl;
 
-import com.redding.rbac.dao.domain.OperationPrivilege;
 import com.redding.rbac.service.OperationPrivilegeService;
-import com.redding.rbac.service.utils.BaseService;
+import org.springframework.stereotype.Service;
 
-public class OperationPrivilegeServiceImpl extends BaseService<OperationPrivilege> implements OperationPrivilegeService {
+@Service
+public class OperationPrivilegeServiceImpl implements OperationPrivilegeService {
 }

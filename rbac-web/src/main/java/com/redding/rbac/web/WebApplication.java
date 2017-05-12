@@ -11,7 +11,7 @@ import org.springframework.context.annotation.PropertySource;
  * @Date 2017/4/1 14:43
  */
 @SpringBootApplication(scanBasePackages = "com.redding.rbac")
-@ImportResource({"classpath:service-applicationContext.xml","classpath:web-applicationContext.xml"})
+@ImportResource({"classpath:spring-context.xml","classpath:spring-mvc.xml"})
 @PropertySource({"classpath:application.properties"})
 public class WebApplication {
 

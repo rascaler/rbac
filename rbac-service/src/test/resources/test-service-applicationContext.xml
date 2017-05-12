@@ -38,7 +38,7 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <context:component-scan base-package="com.redding.rbac.service"/>
+    <context:component-scan base-package="com.redding.rbac"/>
 
     <context:property-placeholder location="classpath:application.properties"/>
 
@@ -78,7 +78,6 @@
                     <!-- 这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置 -->
                     <property name="properties">
                         <value>
-                            dialect=mysql
                             reasonable=true
                             supportMethodsArguments=true
                             params=count=countSql

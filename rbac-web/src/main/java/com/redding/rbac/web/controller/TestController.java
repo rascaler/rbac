@@ -1,21 +1,14 @@
 package com.redding.rbac.web.controller;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.redding.rbac.commons.utils.json.DateJsonDeserializer;
 import com.redding.rbac.service.EnterpriseService;
-import com.redding.rbac.web.utils.DateConverter;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -104,42 +97,3 @@ class DateJsonSerializer extends JsonSerializer<Date> {
 
 }
 
-/**
- * Desc:日期类型的反序列化类
- *
- * @author zhangwei<wei.zw@corp.netease.com>
- * @since 2015年9月18日 下午4:31:02
- * @version v 0.1
- */
-class DateJsonDeserializer extends JsonDeserializer<Date> {
-
-    private String DATE = "yyyy-MM-dd";
-    private String DATE_TIME_NO_SECOND = "yyyy-MM-dd HH:mm";
-    private String DATE_TIME = "yyyy-MM-dd HH:mm:ss";
-
-    @Override
-    public Date deserialize(JsonParser parser, DeserializationContext context)
-            throws IOException, JsonProcessingException {
-        try {
-            String pattern = null;
-            String origin = parser.getValueAsString();
-            if(StringUtils.isEmpty(origin))
-                return null;
-            String[] temp = origin.split("\\:");
-            if(null == temp || temp.length <=1)
-                pattern = DATE;
-            else if(temp.length == 2)
-                pattern = DATE_TIME_NO_SECOND;
-            else if(temp.length == 3)
-                pattern = DATE_TIME;
-            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-            return sdf.parse(origin);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
-
-}

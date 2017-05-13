@@ -67,7 +67,7 @@
    			 <appender-ref ref="applicationInfo"/>
   	 </logger> -->
 
-	<logger name="com.rascaler.rbac.dao" level="DEBUG" />
+	<logger name="com.redding.rbac.infrastructure" level="DEBUG" />
 
 	<!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
 	<!-- <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="INFO" />

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redding.rbac.infrastructure.mapper.OragnizationMapper">
+  <resultMap id="BaseResultMap" type="com.redding.rbac.infrastructure.domain.Oragnization">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="createdDate" jdbcType="TIMESTAMP" property="createddate" />
+    <result column="updatedDate" jdbcType="TIMESTAMP" property="updateddate" />
+    <result column="parentId" jdbcType="INTEGER" property="parentid" />
+    <result column="pidList" jdbcType="VARCHAR" property="pidlist" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="enterpriseId" jdbcType="INTEGER" property="enterpriseid" />
+  </resultMap>
+</mapper>

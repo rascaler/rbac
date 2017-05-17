@@ -105,7 +105,7 @@
     <aop:aspectj-autoproxy/>
 
     <aop:config>
-        <aop:pointcut id="appService" expression="execution(* com.redding.rbac.service..*Service*.*(..))"/>
+        <aop:pointcut id="appService" expression="execution(* com.redding.rbac.infrastructure.manager..*Manager*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="appService"/>
     </aop:config>
 

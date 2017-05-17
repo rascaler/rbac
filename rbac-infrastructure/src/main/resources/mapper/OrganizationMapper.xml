@@ -13,4 +13,8 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="enterpriseId" property="enterpriseId" jdbcType="INTEGER" />
   </resultMap>
+
+  <select id="selectSelfAndSub" resultMap="BaseResultMap">
+    SELECT * FROM tb_organization WHERE (find_in_set(#{id}, pidList) or id = #{id}) and enterpriseId = #{enterpriseId}
+  </select>
 </mapper>

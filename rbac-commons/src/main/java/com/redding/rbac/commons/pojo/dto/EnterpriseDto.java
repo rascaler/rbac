@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class EnterpriseDto implements Serializable {
+    public final static int ENTERPRISE_ID_MOCK = 1;
+
     private Integer id;
 
     /**

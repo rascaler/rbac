@@ -2,9 +2,13 @@ package com.redding.rbac.commons.pojo.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class OrganizationDto implements Serializable {
-    public static final int ROOT_PARENT = 0;
+public class OrganizationNodeDto implements Serializable {
+
+    /**
+     * 组织id
+     */
     private Integer id;
 
     /**
@@ -32,7 +36,16 @@ public class OrganizationDto implements Serializable {
      */
     private String name;
 
+    /**
+     * 企业id
+     */
     private Integer enterpriseId;
+
+    /////////////////////////////////
+    /**
+     *
+     */
+    private List<OrganizationNodeDto> children;
 
     /**
      * @return id
@@ -150,5 +163,13 @@ public class OrganizationDto implements Serializable {
      */
     public void setEnterpriseId(Integer enterpriseId) {
         this.enterpriseId = enterpriseId;
+    }
+
+    public List<OrganizationNodeDto> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<OrganizationNodeDto> children) {
+        this.children = children;
     }
 }

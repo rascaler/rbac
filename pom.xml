@@ -125,6 +125,7 @@
                 <mysql.url>
                     jdbc:mysql://127.0.0.1:3306/rbac?allowMultiQueries=true&amp;tinyInt1isBit=false&amp;zeroDateTimeBehavior=convertToNull
                 </mysql.url>
+                <cors.enable>true</cors.enable>
             </properties>
         </profile>
     </profiles>

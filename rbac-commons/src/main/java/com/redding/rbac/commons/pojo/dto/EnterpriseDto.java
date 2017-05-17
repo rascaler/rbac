@@ -9,12 +9,12 @@ public class EnterpriseDto implements Serializable {
     /**
      * 创建时间
      */
-    private Date createddate;
+    private Date createdDate;
 
     /**
      * 更新时间
      */
-    private Date updateddate;
+    private Date updatedDate;
 
     /**
      * 公司名称
@@ -24,7 +24,7 @@ public class EnterpriseDto implements Serializable {
     /**
      * 英文名称
      */
-    private String englishname;
+    private String englishName;
 
     /**
      * 公司地址
@@ -55,17 +55,17 @@ public class EnterpriseDto implements Serializable {
      *
      * @return createdDate - 创建时间
      */
-    public Date getCreateddate() {
-        return createddate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
     /**
      * 设置创建时间
      *
-     * @param createddate 创建时间
+     * @param createdDate 创建时间
      */
-    public void setCreateddate(Date createddate) {
-        this.createddate = createddate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     /**
@@ -73,17 +73,17 @@ public class EnterpriseDto implements Serializable {
      *
      * @return updatedDate - 更新时间
      */
-    public Date getUpdateddate() {
-        return updateddate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
     /**
      * 设置更新时间
      *
-     * @param updateddate 更新时间
+     * @param updatedDate 更新时间
      */
-    public void setUpdateddate(Date updateddate) {
-        this.updateddate = updateddate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     /**
@@ -109,17 +109,17 @@ public class EnterpriseDto implements Serializable {
      *
      * @return englishName - 英文名称
      */
-    public String getEnglishname() {
-        return englishname;
+    public String getEnglishName() {
+        return englishName;
     }
 
     /**
      * 设置英文名称
      *
-     * @param englishname 英文名称
+     * @param englishName 英文名称
      */
-    public void setEnglishname(String englishname) {
-        this.englishname = englishname;
+    public void setEnglishName(String englishName) {
+        this.englishName = englishName;
     }
 
     /**

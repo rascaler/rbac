@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.redding.rbac.infrastructure.mapper.MenuPrivilegeMapper">
-  <resultMap id="BaseResultMap" type="com.redding.rbac.infrastructure.domain.MenuPrivilege">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.redding.rbac.infrastructure.mapper.MenuPrivilegeMapper" >
+  <resultMap id="BaseResultMap" type="com.redding.rbac.infrastructure.domain.MenuPrivilege" >
     <!--
       WARNING - @mbggenerated
     -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="menuId" jdbcType="INTEGER" property="menuid" />
-    <result column="privilegeId" jdbcType="INTEGER" property="privilegeid" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="menuId" property="menuId" jdbcType="INTEGER" />
+    <result column="privilegeId" property="privilegeId" jdbcType="INTEGER" />
   </resultMap>
 </mapper>

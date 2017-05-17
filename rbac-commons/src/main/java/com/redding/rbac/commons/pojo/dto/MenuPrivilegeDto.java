@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class MenuPrivilegeDto implements Serializable {
     private Integer id;
 
-    private Integer menuid;
+    private Integer menuId;
 
-    private Integer privilegeid;
+    private Integer privilegeId;
 
     /**
      * @return id
@@ -26,28 +26,28 @@ public class MenuPrivilegeDto implements Serializable {
     /**
      * @return menuId
      */
-    public Integer getMenuid() {
-        return menuid;
+    public Integer getMenuId() {
+        return menuId;
     }
 
     /**
-     * @param menuid
+     * @param menuId
      */
-    public void setMenuid(Integer menuid) {
-        this.menuid = menuid;
+    public void setMenuId(Integer menuId) {
+        this.menuId = menuId;
     }
 
     /**
      * @return privilegeId
      */
-    public Integer getPrivilegeid() {
-        return privilegeid;
+    public Integer getPrivilegeId() {
+        return privilegeId;
     }
 
     /**
-     * @param privilegeid
+     * @param privilegeId
      */
-    public void setPrivilegeid(Integer privilegeid) {
-        this.privilegeid = privilegeid;
+    public void setPrivilegeId(Integer privilegeId) {
+        this.privilegeId = privilegeId;
     }
 }

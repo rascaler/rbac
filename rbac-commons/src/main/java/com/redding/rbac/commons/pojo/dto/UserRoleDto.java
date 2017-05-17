@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class UserRoleDto implements Serializable {
     private Integer id;
 
-    private Integer userid;
+    private Integer userId;
 
-    private Integer roleid;
+    private Integer roleId;
 
     /**
      * @return id
@@ -26,28 +26,28 @@ public class UserRoleDto implements Serializable {
     /**
      * @return userId
      */
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
     /**
-     * @param userid
+     * @param userId
      */
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     /**
      * @return roleId
      */
-    public Integer getRoleid() {
-        return roleid;
+    public Integer getRoleId() {
+        return roleId;
     }
 
     /**
-     * @param roleid
+     * @param roleId
      */
-    public void setRoleid(Integer roleid) {
-        this.roleid = roleid;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 }

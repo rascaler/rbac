@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class FilePrivilegeDto implements Serializable {
     private Integer id;
 
-    private Integer fileid;
+    private Integer fileId;
 
-    private Integer privilegeid;
+    private Integer privilegeId;
 
     /**
      * @return id
@@ -26,28 +26,28 @@ public class FilePrivilegeDto implements Serializable {
     /**
      * @return fileId
      */
-    public Integer getFileid() {
-        return fileid;
+    public Integer getFileId() {
+        return fileId;
     }
 
     /**
-     * @param fileid
+     * @param fileId
      */
-    public void setFileid(Integer fileid) {
-        this.fileid = fileid;
+    public void setFileId(Integer fileId) {
+        this.fileId = fileId;
     }
 
     /**
      * @return privilegeId
      */
-    public Integer getPrivilegeid() {
-        return privilegeid;
+    public Integer getPrivilegeId() {
+        return privilegeId;
     }
 
     /**
-     * @param privilegeid
+     * @param privilegeId
      */
-    public void setPrivilegeid(Integer privilegeid) {
-        this.privilegeid = privilegeid;
+    public void setPrivilegeId(Integer privilegeId) {
+        this.privilegeId = privilegeId;
     }
 }

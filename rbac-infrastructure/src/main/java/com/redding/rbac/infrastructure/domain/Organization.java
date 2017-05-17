@@ -4,7 +4,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "tb_organization")
-public class Oragnization {
+public class Organization {
     @Id
     @Column(name = "id")
     private Integer id;
@@ -13,25 +13,25 @@ public class Oragnization {
      * 创建时间
      */
     @Column(name = "createdDate")
-    private Date createddate;
+    private Date createdDate;
 
     /**
      * 更新时间
      */
     @Column(name = "updatedDate")
-    private Date updateddate;
+    private Date updatedDate;
 
     /**
      * 父节点
      */
     @Column(name = "parentId")
-    private Integer parentid;
+    private Integer parentId;
 
     /**
      * 父节点ID列表
      */
     @Column(name = "pidList")
-    private String pidlist;
+    private String pidList;
 
     /**
      * 组织名称
@@ -40,7 +40,7 @@ public class Oragnization {
     private String name;
 
     @Column(name = "enterpriseId")
-    private Integer enterpriseid;
+    private Integer enterpriseId;
 
     /**
      * @return id
@@ -61,17 +61,17 @@ public class Oragnization {
      *
      * @return createdDate - 创建时间
      */
-    public Date getCreateddate() {
-        return createddate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
     /**
      * 设置创建时间
      *
-     * @param createddate 创建时间
+     * @param createdDate 创建时间
      */
-    public void setCreateddate(Date createddate) {
-        this.createddate = createddate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     /**
@@ -79,17 +79,17 @@ public class Oragnization {
      *
      * @return updatedDate - 更新时间
      */
-    public Date getUpdateddate() {
-        return updateddate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
     /**
      * 设置更新时间
      *
-     * @param updateddate 更新时间
+     * @param updatedDate 更新时间
      */
-    public void setUpdateddate(Date updateddate) {
-        this.updateddate = updateddate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     /**
@@ -97,17 +97,17 @@ public class Oragnization {
      *
      * @return parentId - 父节点
      */
-    public Integer getParentid() {
-        return parentid;
+    public Integer getParentId() {
+        return parentId;
     }
 
     /**
      * 设置父节点
      *
-     * @param parentid 父节点
+     * @param parentId 父节点
      */
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     /**
@@ -115,17 +115,17 @@ public class Oragnization {
      *
      * @return pidList - 父节点ID列表
      */
-    public String getPidlist() {
-        return pidlist;
+    public String getPidList() {
+        return pidList;
     }
 
     /**
      * 设置父节点ID列表
      *
-     * @param pidlist 父节点ID列表
+     * @param pidList 父节点ID列表
      */
-    public void setPidlist(String pidlist) {
-        this.pidlist = pidlist;
+    public void setPidList(String pidList) {
+        this.pidList = pidList;
     }
 
     /**
@@ -149,14 +149,14 @@ public class Oragnization {
     /**
      * @return enterpriseId
      */
-    public Integer getEnterpriseid() {
-        return enterpriseid;
+    public Integer getEnterpriseId() {
+        return enterpriseId;
     }
 
     /**
-     * @param enterpriseid
+     * @param enterpriseId
      */
-    public void setEnterpriseid(Integer enterpriseid) {
-        this.enterpriseid = enterpriseid;
+    public void setEnterpriseId(Integer enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 }

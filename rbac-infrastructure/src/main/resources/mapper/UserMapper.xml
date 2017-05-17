@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.redding.rbac.infrastructure.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.redding.rbac.infrastructure.domain.User">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.redding.rbac.infrastructure.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.redding.rbac.infrastructure.domain.User" >
     <!--
       WARNING - @mbggenerated
     -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="createdDate" jdbcType="TIMESTAMP" property="createddate" />
-    <result column="updatedDate" jdbcType="TIMESTAMP" property="updateddate" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="state" jdbcType="TINYINT" property="state" />
-    <result column="nickName" jdbcType="VARCHAR" property="nickname" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="sex" jdbcType="TINYINT" property="sex" />
-    <result column="enterpriseId" jdbcType="INTEGER" property="enterpriseid" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="createdDate" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="updatedDate" property="updatedDate" jdbcType="TIMESTAMP" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="nickName" property="nickName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="TINYINT" />
+    <result column="enterpriseId" property="enterpriseId" jdbcType="INTEGER" />
   </resultMap>
 </mapper>

@@ -9,10 +9,10 @@ public class UserUserGroup {
     private Integer id;
 
     @Column(name = "userGroupId")
-    private Integer usergroupid;
+    private Integer userGroupId;
 
     @Column(name = "userId")
-    private Integer userid;
+    private Integer userId;
 
     /**
      * @return id
@@ -31,28 +31,28 @@ public class UserUserGroup {
     /**
      * @return userGroupId
      */
-    public Integer getUsergroupid() {
-        return usergroupid;
+    public Integer getUserGroupId() {
+        return userGroupId;
     }
 
     /**
-     * @param usergroupid
+     * @param userGroupId
      */
-    public void setUsergroupid(Integer usergroupid) {
-        this.usergroupid = usergroupid;
+    public void setUserGroupId(Integer userGroupId) {
+        this.userGroupId = userGroupId;
     }
 
     /**
      * @return userId
      */
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
     /**
-     * @param userid
+     * @param userId
      */
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

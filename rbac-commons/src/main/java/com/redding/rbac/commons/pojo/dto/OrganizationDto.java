@@ -3,35 +3,35 @@ package com.redding.rbac.commons.pojo.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class OragnizationDto implements Serializable {
+public class OrganizationDto implements Serializable {
     private Integer id;
 
     /**
      * 创建时间
      */
-    private Date createddate;
+    private Date createdDate;
 
     /**
      * 更新时间
      */
-    private Date updateddate;
+    private Date updatedDate;
 
     /**
      * 父节点
      */
-    private Integer parentid;
+    private Integer parentId;
 
     /**
      * 父节点ID列表
      */
-    private String pidlist;
+    private String pidList;
 
     /**
      * 组织名称
      */
     private String name;
 
-    private Integer enterpriseid;
+    private Integer enterpriseId;
 
     /**
      * @return id
@@ -52,17 +52,17 @@ public class OragnizationDto implements Serializable {
      *
      * @return createdDate - 创建时间
      */
-    public Date getCreateddate() {
-        return createddate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
     /**
      * 设置创建时间
      *
-     * @param createddate 创建时间
+     * @param createdDate 创建时间
      */
-    public void setCreateddate(Date createddate) {
-        this.createddate = createddate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     /**
@@ -70,17 +70,17 @@ public class OragnizationDto implements Serializable {
      *
      * @return updatedDate - 更新时间
      */
-    public Date getUpdateddate() {
-        return updateddate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
     /**
      * 设置更新时间
      *
-     * @param updateddate 更新时间
+     * @param updatedDate 更新时间
      */
-    public void setUpdateddate(Date updateddate) {
-        this.updateddate = updateddate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     /**
@@ -88,17 +88,17 @@ public class OragnizationDto implements Serializable {
      *
      * @return parentId - 父节点
      */
-    public Integer getParentid() {
-        return parentid;
+    public Integer getParentId() {
+        return parentId;
     }
 
     /**
      * 设置父节点
      *
-     * @param parentid 父节点
+     * @param parentId 父节点
      */
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     /**
@@ -106,17 +106,17 @@ public class OragnizationDto implements Serializable {
      *
      * @return pidList - 父节点ID列表
      */
-    public String getPidlist() {
-        return pidlist;
+    public String getPidList() {
+        return pidList;
     }
 
     /**
      * 设置父节点ID列表
      *
-     * @param pidlist 父节点ID列表
+     * @param pidList 父节点ID列表
      */
-    public void setPidlist(String pidlist) {
-        this.pidlist = pidlist;
+    public void setPidList(String pidList) {
+        this.pidList = pidList;
     }
 
     /**
@@ -140,14 +140,14 @@ public class OragnizationDto implements Serializable {
     /**
      * @return enterpriseId
      */
-    public Integer getEnterpriseid() {
-        return enterpriseid;
+    public Integer getEnterpriseId() {
+        return enterpriseId;
     }
 
     /**
-     * @param enterpriseid
+     * @param enterpriseId
      */
-    public void setEnterpriseid(Integer enterpriseid) {
-        this.enterpriseid = enterpriseid;
+    public void setEnterpriseId(Integer enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 }

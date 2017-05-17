@@ -10,13 +10,13 @@ public class Element {
     private Integer id;
 
     @Column(name = "createdDate")
-    private Date createddate;
+    private Date createdDate;
 
     @Column(name = "updatedDate")
-    private Date updateddate;
+    private Date updatedDate;
 
     @Column(name = "enterpriseId")
-    private Integer enterpriseid;
+    private Integer enterpriseId;
 
     /**
      * @return id
@@ -35,42 +35,42 @@ public class Element {
     /**
      * @return createdDate
      */
-    public Date getCreateddate() {
-        return createddate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
     /**
-     * @param createddate
+     * @param createdDate
      */
-    public void setCreateddate(Date createddate) {
-        this.createddate = createddate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     /**
      * @return updatedDate
      */
-    public Date getUpdateddate() {
-        return updateddate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
     /**
-     * @param updateddate
+     * @param updatedDate
      */
-    public void setUpdateddate(Date updateddate) {
-        this.updateddate = updateddate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     /**
      * @return enterpriseId
      */
-    public Integer getEnterpriseid() {
-        return enterpriseid;
+    public Integer getEnterpriseId() {
+        return enterpriseId;
     }
 
     /**
-     * @param enterpriseid
+     * @param enterpriseId
      */
-    public void setEnterpriseid(Integer enterpriseid) {
-        this.enterpriseid = enterpriseid;
+    public void setEnterpriseId(Integer enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 }

@@ -9,10 +9,10 @@ public class MenuPrivilege {
     private Integer id;
 
     @Column(name = "menuId")
-    private Integer menuid;
+    private Integer menuId;
 
     @Column(name = "privilegeId")
-    private Integer privilegeid;
+    private Integer privilegeId;
 
     /**
      * @return id
@@ -31,28 +31,28 @@ public class MenuPrivilege {
     /**
      * @return menuId
      */
-    public Integer getMenuid() {
-        return menuid;
+    public Integer getMenuId() {
+        return menuId;
     }
 
     /**
-     * @param menuid
+     * @param menuId
      */
-    public void setMenuid(Integer menuid) {
-        this.menuid = menuid;
+    public void setMenuId(Integer menuId) {
+        this.menuId = menuId;
     }
 
     /**
      * @return privilegeId
      */
-    public Integer getPrivilegeid() {
-        return privilegeid;
+    public Integer getPrivilegeId() {
+        return privilegeId;
     }
 
     /**
-     * @param privilegeid
+     * @param privilegeId
      */
-    public void setPrivilegeid(Integer privilegeid) {
-        this.privilegeid = privilegeid;
+    public void setPrivilegeId(Integer privilegeId) {
+        this.privilegeId = privilegeId;
     }
 }

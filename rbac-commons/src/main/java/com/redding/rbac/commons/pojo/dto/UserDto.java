@@ -9,12 +9,12 @@ public class UserDto implements Serializable {
     /**
      * 创建时间
      */
-    private Date createddate;
+    private Date createdDate;
 
     /**
      * 更新时间
      */
-    private Date updateddate;
+    private Date updatedDate;
 
     /**
      * 用户名
@@ -34,7 +34,7 @@ public class UserDto implements Serializable {
     /**
      * 昵称
      */
-    private String nickname;
+    private String nickName;
 
     /**
      * 真实姓名
@@ -56,7 +56,7 @@ public class UserDto implements Serializable {
      */
     private Byte sex;
 
-    private Integer enterpriseid;
+    private Integer enterpriseId;
 
     /**
      * @return id
@@ -77,17 +77,17 @@ public class UserDto implements Serializable {
      *
      * @return createdDate - 创建时间
      */
-    public Date getCreateddate() {
-        return createddate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
     /**
      * 设置创建时间
      *
-     * @param createddate 创建时间
+     * @param createdDate 创建时间
      */
-    public void setCreateddate(Date createddate) {
-        this.createddate = createddate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     /**
@@ -95,17 +95,17 @@ public class UserDto implements Serializable {
      *
      * @return updatedDate - 更新时间
      */
-    public Date getUpdateddate() {
-        return updateddate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
     /**
      * 设置更新时间
      *
-     * @param updateddate 更新时间
+     * @param updatedDate 更新时间
      */
-    public void setUpdateddate(Date updateddate) {
-        this.updateddate = updateddate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     /**
@@ -167,17 +167,17 @@ public class UserDto implements Serializable {
      *
      * @return nickName - 昵称
      */
-    public String getNickname() {
-        return nickname;
+    public String getNickName() {
+        return nickName;
     }
 
     /**
      * 设置昵称
      *
-     * @param nickname 昵称
+     * @param nickName 昵称
      */
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     /**
@@ -255,14 +255,14 @@ public class UserDto implements Serializable {
     /**
      * @return enterpriseId
      */
-    public Integer getEnterpriseid() {
-        return enterpriseid;
+    public Integer getEnterpriseId() {
+        return enterpriseId;
     }
 
     /**
-     * @param enterpriseid
+     * @param enterpriseId
      */
-    public void setEnterpriseid(Integer enterpriseid) {
-        this.enterpriseid = enterpriseid;
+    public void setEnterpriseId(Integer enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 }

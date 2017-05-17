@@ -9,10 +9,10 @@ public class RolePrivilege {
     private Integer id;
 
     @Column(name = "roleId")
-    private Integer roleid;
+    private Integer roleId;
 
     @Column(name = "privilegeId")
-    private Integer privilegeid;
+    private Integer privilegeId;
 
     /**
      * @return id
@@ -31,28 +31,28 @@ public class RolePrivilege {
     /**
      * @return roleId
      */
-    public Integer getRoleid() {
-        return roleid;
+    public Integer getRoleId() {
+        return roleId;
     }
 
     /**
-     * @param roleid
+     * @param roleId
      */
-    public void setRoleid(Integer roleid) {
-        this.roleid = roleid;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
     /**
      * @return privilegeId
      */
-    public Integer getPrivilegeid() {
-        return privilegeid;
+    public Integer getPrivilegeId() {
+        return privilegeId;
     }
 
     /**
-     * @param privilegeid
+     * @param privilegeId
      */
-    public void setPrivilegeid(Integer privilegeid) {
-        this.privilegeid = privilegeid;
+    public void setPrivilegeId(Integer privilegeId) {
+        this.privilegeId = privilegeId;
     }
 }

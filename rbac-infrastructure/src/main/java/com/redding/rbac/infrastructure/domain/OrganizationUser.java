@@ -9,10 +9,10 @@ public class OrganizationUser {
     private Integer id;
 
     @Column(name = "organizationId")
-    private Integer organizationid;
+    private Integer organizationId;
 
     @Column(name = "userId")
-    private Integer userid;
+    private Integer userId;
 
     /**
      * @return id
@@ -31,28 +31,28 @@ public class OrganizationUser {
     /**
      * @return organizationId
      */
-    public Integer getOrganizationid() {
-        return organizationid;
+    public Integer getOrganizationId() {
+        return organizationId;
     }
 
     /**
-     * @param organizationid
+     * @param organizationId
      */
-    public void setOrganizationid(Integer organizationid) {
-        this.organizationid = organizationid;
+    public void setOrganizationId(Integer organizationId) {
+        this.organizationId = organizationId;
     }
 
     /**
      * @return userId
      */
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
     /**
-     * @param userid
+     * @param userId
      */
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

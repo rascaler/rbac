@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class OrganizationUserDto implements Serializable {
     private Integer id;
 
-    private Integer organizationid;
+    private Integer organizationId;
 
-    private Integer userid;
+    private Integer userId;
 
     /**
      * @return id
@@ -26,28 +26,28 @@ public class OrganizationUserDto implements Serializable {
     /**
      * @return organizationId
      */
-    public Integer getOrganizationid() {
-        return organizationid;
+    public Integer getOrganizationId() {
+        return organizationId;
     }
 
     /**
-     * @param organizationid
+     * @param organizationId
      */
-    public void setOrganizationid(Integer organizationid) {
-        this.organizationid = organizationid;
+    public void setOrganizationId(Integer organizationId) {
+        this.organizationId = organizationId;
     }
 
     /**
      * @return userId
      */
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
     /**
-     * @param userid
+     * @param userId
      */
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

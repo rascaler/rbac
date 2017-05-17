@@ -6,9 +6,9 @@ import java.util.Date;
 public class UserGroupDto implements Serializable {
     private Integer id;
 
-    private Date createddate;
+    private Date createdDate;
 
-    private Date updateddate;
+    private Date updatedDate;
 
     /**
      * 组名称
@@ -18,14 +18,14 @@ public class UserGroupDto implements Serializable {
     /**
      * 父用户组id
      */
-    private Integer parentid;
+    private Integer parentId;
 
     /**
      * 父用户组id列表
      */
-    private String pidlist;
+    private String pidList;
 
-    private Integer enterpriseid;
+    private Integer enterpriseId;
 
     /**
      * @return id
@@ -44,29 +44,29 @@ public class UserGroupDto implements Serializable {
     /**
      * @return createdDate
      */
-    public Date getCreateddate() {
-        return createddate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
     /**
-     * @param createddate
+     * @param createdDate
      */
-    public void setCreateddate(Date createddate) {
-        this.createddate = createddate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     /**
      * @return updatedDate
      */
-    public Date getUpdateddate() {
-        return updateddate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
     /**
-     * @param updateddate
+     * @param updatedDate
      */
-    public void setUpdateddate(Date updateddate) {
-        this.updateddate = updateddate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     /**
@@ -92,17 +92,17 @@ public class UserGroupDto implements Serializable {
      *
      * @return parentId - 父用户组id
      */
-    public Integer getParentid() {
-        return parentid;
+    public Integer getParentId() {
+        return parentId;
     }
 
     /**
      * 设置父用户组id
      *
-     * @param parentid 父用户组id
+     * @param parentId 父用户组id
      */
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     /**
@@ -110,30 +110,30 @@ public class UserGroupDto implements Serializable {
      *
      * @return pidList - 父用户组id列表
      */
-    public String getPidlist() {
-        return pidlist;
+    public String getPidList() {
+        return pidList;
     }
 
     /**
      * 设置父用户组id列表
      *
-     * @param pidlist 父用户组id列表
+     * @param pidList 父用户组id列表
      */
-    public void setPidlist(String pidlist) {
-        this.pidlist = pidlist;
+    public void setPidList(String pidList) {
+        this.pidList = pidList;
     }
 
     /**
      * @return enterpriseId
      */
-    public Integer getEnterpriseid() {
-        return enterpriseid;
+    public Integer getEnterpriseId() {
+        return enterpriseId;
     }
 
     /**
-     * @param enterpriseid
+     * @param enterpriseId
      */
-    public void setEnterpriseid(Integer enterpriseid) {
-        this.enterpriseid = enterpriseid;
+    public void setEnterpriseId(Integer enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 }

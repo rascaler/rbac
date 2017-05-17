@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class RoleUserGroupDto implements Serializable {
     private Integer id;
 
-    private Integer usergroupid;
+    private Integer userGroupId;
 
-    private Integer roleid;
+    private Integer roleId;
 
     /**
      * @return id
@@ -26,28 +26,28 @@ public class RoleUserGroupDto implements Serializable {
     /**
      * @return userGroupId
      */
-    public Integer getUsergroupid() {
-        return usergroupid;
+    public Integer getUserGroupId() {
+        return userGroupId;
     }
 
     /**
-     * @param usergroupid
+     * @param userGroupId
      */
-    public void setUsergroupid(Integer usergroupid) {
-        this.usergroupid = usergroupid;
+    public void setUserGroupId(Integer userGroupId) {
+        this.userGroupId = userGroupId;
     }
 
     /**
      * @return roleId
      */
-    public Integer getRoleid() {
-        return roleid;
+    public Integer getRoleId() {
+        return roleId;
     }
 
     /**
-     * @param roleid
+     * @param roleId
      */
-    public void setRoleid(Integer roleid) {
-        this.roleid = roleid;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 }

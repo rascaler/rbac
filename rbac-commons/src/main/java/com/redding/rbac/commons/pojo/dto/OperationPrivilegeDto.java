@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class OperationPrivilegeDto implements Serializable {
     private Integer id;
 
-    private Integer operationid;
+    private Integer operationId;
 
-    private Integer privilegeid;
+    private Integer privilegeId;
 
     /**
      * @return id
@@ -26,28 +26,28 @@ public class OperationPrivilegeDto implements Serializable {
     /**
      * @return operationId
      */
-    public Integer getOperationid() {
-        return operationid;
+    public Integer getOperationId() {
+        return operationId;
     }
 
     /**
-     * @param operationid
+     * @param operationId
      */
-    public void setOperationid(Integer operationid) {
-        this.operationid = operationid;
+    public void setOperationId(Integer operationId) {
+        this.operationId = operationId;
     }
 
     /**
      * @return privilegeId
      */
-    public Integer getPrivilegeid() {
-        return privilegeid;
+    public Integer getPrivilegeId() {
+        return privilegeId;
     }
 
     /**
-     * @param privilegeid
+     * @param privilegeId
      */
-    public void setPrivilegeid(Integer privilegeid) {
-        this.privilegeid = privilegeid;
+    public void setPrivilegeId(Integer privilegeId) {
+        this.privilegeId = privilegeId;
     }
 }

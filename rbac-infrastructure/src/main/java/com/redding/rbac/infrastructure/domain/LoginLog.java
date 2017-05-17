@@ -10,10 +10,10 @@ public class LoginLog {
     private Integer id;
 
     @Column(name = "createdDate")
-    private Date createddate;
+    private Date createdDate;
 
     @Column(name = "userId")
-    private Integer userid;
+    private Integer userId;
 
     @Column(name = "username")
     private String username;
@@ -22,10 +22,10 @@ public class LoginLog {
     private String ip;
 
     @Column(name = "loginDate")
-    private Date logindate;
+    private Date loginDate;
 
     @Column(name = "enterpriseId")
-    private Integer enterpriseid;
+    private Integer enterpriseId;
 
     /**
      * @return id
@@ -44,29 +44,29 @@ public class LoginLog {
     /**
      * @return createdDate
      */
-    public Date getCreateddate() {
-        return createddate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
     /**
-     * @param createddate
+     * @param createdDate
      */
-    public void setCreateddate(Date createddate) {
-        this.createddate = createddate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     /**
      * @return userId
      */
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
     /**
-     * @param userid
+     * @param userId
      */
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     /**
@@ -100,28 +100,28 @@ public class LoginLog {
     /**
      * @return loginDate
      */
-    public Date getLogindate() {
-        return logindate;
+    public Date getLoginDate() {
+        return loginDate;
     }
 
     /**
-     * @param logindate
+     * @param loginDate
      */
-    public void setLogindate(Date logindate) {
-        this.logindate = logindate;
+    public void setLoginDate(Date loginDate) {
+        this.loginDate = loginDate;
     }
 
     /**
      * @return enterpriseId
      */
-    public Integer getEnterpriseid() {
-        return enterpriseid;
+    public Integer getEnterpriseId() {
+        return enterpriseId;
     }
 
     /**
-     * @param enterpriseid
+     * @param enterpriseId
      */
-    public void setEnterpriseid(Integer enterpriseid) {
-        this.enterpriseid = enterpriseid;
+    public void setEnterpriseId(Integer enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 }

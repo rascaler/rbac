@@ -9,10 +9,10 @@ public class FilePrivilege {
     private Integer id;
 
     @Column(name = "fileId")
-    private Integer fileid;
+    private Integer fileId;
 
     @Column(name = "privilegeId")
-    private Integer privilegeid;
+    private Integer privilegeId;
 
     /**
      * @return id
@@ -31,28 +31,28 @@ public class FilePrivilege {
     /**
      * @return fileId
      */
-    public Integer getFileid() {
-        return fileid;
+    public Integer getFileId() {
+        return fileId;
     }
 
     /**
-     * @param fileid
+     * @param fileId
      */
-    public void setFileid(Integer fileid) {
-        this.fileid = fileid;
+    public void setFileId(Integer fileId) {
+        this.fileId = fileId;
     }
 
     /**
      * @return privilegeId
      */
-    public Integer getPrivilegeid() {
-        return privilegeid;
+    public Integer getPrivilegeId() {
+        return privilegeId;
     }
 
     /**
-     * @param privilegeid
+     * @param privilegeId
      */
-    public void setPrivilegeid(Integer privilegeid) {
-        this.privilegeid = privilegeid;
+    public void setPrivilegeId(Integer privilegeId) {
+        this.privilegeId = privilegeId;
     }
 }

@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.redding.rbac.infrastructure.mapper.EnterpriseMapper">
-  <resultMap id="BaseResultMap" type="com.redding.rbac.infrastructure.domain.Enterprise">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.redding.rbac.infrastructure.mapper.EnterpriseMapper" >
+  <resultMap id="BaseResultMap" type="com.redding.rbac.infrastructure.domain.Enterprise" >
     <!--
       WARNING - @mbggenerated
     -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="createdDate" jdbcType="TIMESTAMP" property="createddate" />
-    <result column="updatedDate" jdbcType="TIMESTAMP" property="updateddate" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="englishName" jdbcType="VARCHAR" property="englishname" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="createdDate" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="updatedDate" property="updatedDate" jdbcType="TIMESTAMP" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="englishName" property="englishName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
   </resultMap>
 </mapper>

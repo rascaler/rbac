@@ -25,10 +25,10 @@
     AND ou.userId = u.id
     AND (find_in_set(#{organizationId}, o.pidList) or o.id = #{organizationId}) and o.enterpriseId = #{enterpriseId}
     <if test="keyword != null and keyword != ''.toString()">
-      AND (name LIKE #{keyword} OR email LIKE #{keyword} or phone LIKE #{keyword})
+      AND (u.name LIKE #{keyword} OR u.email LIKE #{keyword} or u.phone LIKE #{keyword})
     </if>
     <if test="state != null">
-       AND state = #{state}
+       AND u.state = #{state}
     </if>
   </select>
 </mapper>

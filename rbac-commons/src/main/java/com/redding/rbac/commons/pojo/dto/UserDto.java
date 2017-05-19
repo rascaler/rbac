@@ -24,7 +24,7 @@ public class UserDto implements Serializable {
     /**
      * 密码
      */
-    private String password;
+    private transient String password;
 
     /**
      * 账户状态,默认值为1，0=禁用，1=启用

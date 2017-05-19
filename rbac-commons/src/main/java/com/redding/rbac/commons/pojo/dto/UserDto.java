@@ -29,7 +29,7 @@ public class UserDto implements Serializable {
     /**
      * 账户状态,默认值为1，0=禁用，1=启用
      */
-    private Byte state;
+    private Integer state;
 
     /**
      * 昵称
@@ -54,7 +54,7 @@ public class UserDto implements Serializable {
     /**
      * 性别,默认值为0. 1=男,2=女,0=未知
      */
-    private Byte sex;
+    private Integer sex;
 
     private Integer enterpriseId;
 
@@ -149,7 +149,7 @@ public class UserDto implements Serializable {
      *
      * @return state - 账户状态,默认值为1，0=禁用，1=启用
      */
-    public Byte getState() {
+    public Integer getState() {
         return state;
     }
 
@@ -158,7 +158,7 @@ public class UserDto implements Serializable {
      *
      * @param state 账户状态,默认值为1，0=禁用，1=启用
      */
-    public void setState(Byte state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
@@ -239,7 +239,7 @@ public class UserDto implements Serializable {
      *
      * @return sex - 性别,默认值为0. 1=男,2=女,0=未知
      */
-    public Byte getSex() {
+    public Integer getSex() {
         return sex;
     }
 
@@ -248,7 +248,7 @@ public class UserDto implements Serializable {
      *
      * @param sex 性别,默认值为0. 1=男,2=女,0=未知
      */
-    public void setSex(Byte sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 

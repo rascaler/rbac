@@ -37,7 +37,7 @@ public class User {
      * 账户状态,默认值为1，0=禁用，1=启用
      */
     @Column(name = "state")
-    private Byte state;
+    private Integer state;
 
     /**
      * 昵称
@@ -67,7 +67,7 @@ public class User {
      * 性别,默认值为0. 1=男,2=女,0=未知
      */
     @Column(name = "sex")
-    private Byte sex;
+    private Integer sex;
 
     @Column(name = "enterpriseId")
     private Integer enterpriseId;
@@ -163,7 +163,7 @@ public class User {
      *
      * @return state - 账户状态,默认值为1，0=禁用，1=启用
      */
-    public Byte getState() {
+    public Integer getState() {
         return state;
     }
 
@@ -172,7 +172,7 @@ public class User {
      *
      * @param state 账户状态,默认值为1，0=禁用，1=启用
      */
-    public void setState(Byte state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
@@ -253,7 +253,7 @@ public class User {
      *
      * @return sex - 性别,默认值为0. 1=男,2=女,0=未知
      */
-    public Byte getSex() {
+    public Integer getSex() {
         return sex;
     }
 
@@ -262,7 +262,7 @@ public class User {
      *
      * @param sex 性别,默认值为0. 1=男,2=女,0=未知
      */
-    public void setSex(Byte sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 

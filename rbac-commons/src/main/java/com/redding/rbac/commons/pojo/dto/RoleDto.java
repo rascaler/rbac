@@ -15,7 +15,7 @@ public class RoleDto implements Serializable {
     /**
      * 角色状态，默认值1，0=禁用，1=启用
      */
-    private Byte state;
+    private Integer state;
 
     private String description;
 
@@ -82,7 +82,7 @@ public class RoleDto implements Serializable {
      *
      * @return state - 角色状态，默认值1，0=禁用，1=启用
      */
-    public Byte getState() {
+    public Integer getState() {
         return state;
     }
 
@@ -91,7 +91,7 @@ public class RoleDto implements Serializable {
      *
      * @param state 角色状态，默认值1，0=禁用，1=启用
      */
-    public void setState(Byte state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 

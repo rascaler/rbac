@@ -22,7 +22,7 @@ public class Role {
      * 角色状态，默认值1，0=禁用，1=启用
      */
     @Column(name = "state")
-    private Byte state;
+    private Integer state;
 
     @Column(name = "description")
     private String description;
@@ -91,7 +91,7 @@ public class Role {
      *
      * @return state - 角色状态，默认值1，0=禁用，1=启用
      */
-    public Byte getState() {
+    public Integer getState() {
         return state;
     }
 
@@ -100,7 +100,7 @@ public class Role {
      *
      * @param state 角色状态，默认值1，0=禁用，1=启用
      */
-    public void setState(Byte state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 

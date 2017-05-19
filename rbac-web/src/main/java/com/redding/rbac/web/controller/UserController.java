@@ -4,6 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.redding.rbac.commons.pojo.dto.EnterpriseDto;
 import com.redding.rbac.commons.pojo.dto.OrganizationNodeDto;
 import com.redding.rbac.commons.pojo.dto.UserDto;
+import com.redding.rbac.commons.pojo.query.UserQuery;
+import com.redding.rbac.commons.utils.PageParams;
 import com.redding.rbac.service.OrganizationService;
 import com.redding.rbac.service.UserService;
 import com.redding.rbac.web.utils.annotation.OuterResponseBody;
@@ -29,9 +31,9 @@ public class UserController {
 
     @RequestMapping(value = "/pageUsers", method = RequestMethod.GET)
     @OuterResponseBody
-    PageInfo<UserDto> pageUsers(@RequestParam Integer organizationId) {
-
-        return userService.pageUsers(organizationId, EnterpriseDto.ENTERPRISE_ID_MOCK);
+    PageInfo<UserDto> pageUsers(UserQuery userQuery, PageParams pageParams) {
+        userQuery.setEnterpriseId(EnterpriseDto.ENTERPRISE_ID_MOCK);
+        return userService.pageUsers(userQuery,pageParams);
     }
 
 

@@ -9,7 +9,7 @@
     <result column="createdDate" property="createdDate" jdbcType="TIMESTAMP" />
     <result column="updatedDate" property="updatedDate" jdbcType="TIMESTAMP" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="state" property="state" jdbcType="INTEGER" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="enterpriseId" property="enterpriseId" jdbcType="INTEGER" />
   </resultMap>

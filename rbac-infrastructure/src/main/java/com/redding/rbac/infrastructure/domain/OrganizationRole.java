@@ -2,14 +2,17 @@ package com.redding.rbac.infrastructure.domain;
 
 import javax.persistence.*;
 
-@Table(name = "tb_role_user_group")
-public class RoleUserGroup {
+@Table(name = "tb_organization_role")
+public class OrganizationRole {
     @Id
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "userGroupId")
-    private Integer userGroupId;
+    /**
+     * 组织id
+     */
+    @Column(name = "organizationId")
+    private Integer organizationId;
 
     @Column(name = "roleId")
     private Integer roleId;
@@ -29,17 +32,21 @@ public class RoleUserGroup {
     }
 
     /**
-     * @return userGroupId
+     * 获取组织id
+     *
+     * @return organizationId - 组织id
      */
-    public Integer getUserGroupId() {
-        return userGroupId;
+    public Integer getOrganizationId() {
+        return organizationId;
     }
 
     /**
-     * @param userGroupId
+     * 设置组织id
+     *
+     * @param organizationId 组织id
      */
-    public void setUserGroupId(Integer userGroupId) {
-        this.userGroupId = userGroupId;
+    public void setOrganizationId(Integer organizationId) {
+        this.organizationId = organizationId;
     }
 
     /**

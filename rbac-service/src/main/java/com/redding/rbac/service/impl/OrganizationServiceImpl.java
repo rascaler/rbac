@@ -2,14 +2,18 @@ package com.redding.rbac.service.impl;
 
 import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.pojo.dto.OrganizationDto;
+import com.redding.rbac.commons.pojo.dto.OrganizationEditDto;
 import com.redding.rbac.commons.pojo.dto.OrganizationNodeDto;
 import com.redding.rbac.commons.utils.BeanMapper;
 import com.redding.rbac.infrastructure.domain.Organization;
+import com.redding.rbac.infrastructure.domain.OrganizationRole;
+import com.redding.rbac.infrastructure.domain.Role;
 import com.redding.rbac.infrastructure.manager.OrganizationManager;
 import com.redding.rbac.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,6 +38,23 @@ public class OrganizationServiceImpl implements OrganizationService {
         roots.forEach(r -> traverseOrganization(r, organizations) );
         return roots;
     }
+
+    @Override
+    public void saveOrganization(OrganizationEditDto organizationEditDto) throws SPIException {
+        Organization organization = BeanMapper.map(organizationEditDto, Organization.class);
+        List<OrganizationRole> organizationRoles = new ArrayList<OrganizationRole>(organizationEditDto.getRoleIds().size());
+        organizationEditDto.getRoleIds().forEach(id -> {
+            OrganizationRole organizationRole = new OrganizationRole();
+            organizationRole.setRoleId(id);
+        });
+        organizationManager.saveOrganization(organization,organizationRoles);
+    }
+
+    @Override
+    public void updateOrganization(OrganizationEditDto organizationEditDto) throws SPIException {
+
+    }
+    /////////////////////////private method//////////////////////////////////
 
     //递归遍历
     private void traverseOrganization(OrganizationNodeDto parent,List<Organization> allOrgs){

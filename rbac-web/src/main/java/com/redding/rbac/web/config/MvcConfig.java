@@ -38,8 +38,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
             registry.addMapping("/**")
                     .allowedOrigins("*")
                     .allowCredentials(true)
-                    .allowedMethods("GET", "POST", "DELETE", "PUT")
-                    .allowedHeaders("Authorization","x-requested-with")
+                    .allowedMethods("GET", "POST", "DELETE", "PUT", "OPTION")
+                    .allowedHeaders("Authorization","x-requested-with","Content-Type","Accept")
                     .maxAge(3600);
     }
 

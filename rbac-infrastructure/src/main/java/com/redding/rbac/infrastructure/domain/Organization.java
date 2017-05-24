@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Organization {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**

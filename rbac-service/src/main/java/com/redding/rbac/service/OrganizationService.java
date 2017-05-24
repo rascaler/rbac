@@ -7,9 +7,25 @@ import com.redding.rbac.commons.pojo.dto.OrganizationNodeDto;
 import java.util.List;
 
 public interface OrganizationService {
+    /**
+     * 获取组织树
+     * @param id
+     * @param enterpriseId
+     * @return
+     * @throws SPIException
+     */
     List<OrganizationNodeDto> getOrgTree(Integer id, Integer enterpriseId) throws SPIException;
 
+    /**
+     *
+     * @param organizationEditDto
+     * @throws SPIException
+     */
     void saveOrganization(OrganizationEditDto organizationEditDto) throws SPIException;
 
+    /**
+     * @param organizationEditDto
+     * @throws SPIException
+     */
     void updateOrganization(OrganizationEditDto organizationEditDto) throws SPIException;
 }

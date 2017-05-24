@@ -1,5 +1,6 @@
 package com.redding.rbac.service.impl;
 
+import com.redding.rbac.commons.constant.RbacEcode;
 import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.pojo.dto.OrganizationDto;
 import com.redding.rbac.commons.pojo.dto.OrganizationEditDto;
@@ -7,19 +8,22 @@ import com.redding.rbac.commons.pojo.dto.OrganizationNodeDto;
 import com.redding.rbac.commons.utils.BeanMapper;
 import com.redding.rbac.infrastructure.domain.Organization;
 import com.redding.rbac.infrastructure.domain.OrganizationRole;
-import com.redding.rbac.infrastructure.domain.Role;
 import com.redding.rbac.infrastructure.manager.OrganizationManager;
 import com.redding.rbac.service.OrganizationService;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
+
+    private Logger logger = LoggerFactory.getLogger(OrganizationServiceImpl.class);
 
     @Autowired
     private OrganizationManager organizationManager;
@@ -41,18 +45,34 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public void saveOrganization(OrganizationEditDto organizationEditDto) throws SPIException {
+        Organization parent = organizationManager.selectByKey(organizationEditDto.getParentId());
+        if(null == parent){
+            logger.info("组织id={}不存在", organizationEditDto.getId());
+            throw new SPIException(RbacEcode.ORGANIZATION_NOT_EXISTS);
+        }
         Organization organization = BeanMapper.map(organizationEditDto, Organization.class);
+        String pidList = StringUtils.isNotEmpty(parent.getPidList()) ? parent.getPidList() + "," + parent.getId() : parent.getId().toString();
+        organization.setPidList(pidList);
         List<OrganizationRole> organizationRoles = new ArrayList<OrganizationRole>(organizationEditDto.getRoleIds().size());
         organizationEditDto.getRoleIds().forEach(id -> {
             OrganizationRole organizationRole = new OrganizationRole();
             organizationRole.setRoleId(id);
+            organizationRoles.add(organizationRole);
         });
         organizationManager.saveOrganization(organization,organizationRoles);
     }
 
     @Override
     public void updateOrganization(OrganizationEditDto organizationEditDto) throws SPIException {
-
+        Organization organization = BeanMapper.map(organizationEditDto, Organization.class);
+        List<OrganizationRole> organizationRoles = new ArrayList<OrganizationRole>(organizationEditDto.getRoleIds().size());
+        organizationEditDto.getRoleIds().forEach(id -> {
+            OrganizationRole organizationRole = new OrganizationRole();
+            organizationRole.setRoleId(id);
+            organizationRole.setOrganizationId(organizationEditDto.getId());
+            organizationRoles.add(organizationRole);
+        });
+        organizationManager.updateOrganization(organization,organizationRoles);
     }
     /////////////////////////private method//////////////////////////////////
 

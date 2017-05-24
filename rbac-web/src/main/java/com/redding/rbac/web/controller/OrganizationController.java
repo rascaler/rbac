@@ -37,6 +37,7 @@ public class OrganizationController {
     @RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
     @OuterResponseBody
     void saveOrganization(@RequestBody OrganizationEditDto organization) {
+        // 获取父节点
         if(null == organization.getRoleIds() || organization.getRoleIds().isEmpty())
             throw new SPIException(BasicEcode.FAILED);
         organization.setEnterpriseId(EnterpriseDto.ENTERPRISE_ID_MOCK);

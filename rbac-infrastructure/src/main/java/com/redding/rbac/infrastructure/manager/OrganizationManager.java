@@ -28,4 +28,11 @@ public interface OrganizationManager extends BaseManager<Organization> {
      * @param organizationRoles
      */
     void updateOrganization(Organization organization, List<OrganizationRole> organizationRoles);
+
+    /**
+     * 删除组织
+     * @param id
+     * @return
+     */
+    int remove(Integer id);
 }

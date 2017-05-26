@@ -43,6 +43,9 @@ public class Organization {
     @Column(name = "enterpriseId")
     private Integer enterpriseId;
 
+    @Column(name = "description")
+    private String description;
+
     /**
      * @return id
      */

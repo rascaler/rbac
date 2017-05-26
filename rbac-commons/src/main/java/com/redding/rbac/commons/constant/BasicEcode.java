@@ -61,20 +61,18 @@ public class BasicEcode implements Serializable {
     /* 数据不存在 */
     public final static String DATA_NOT_FOUND = "13004";
 
-
-    //操作类提示
     /**
      * 保存失败
      */
-    public final static String OP_ERR_SAVE = "19001";
+    public final static String SAVE_ERROR = "19001";
     /**
      * 更新失败
      */
-    public final static String OP_ERR_UPDATE = "19002";
+    public final static String UPDATE_ERROR = "19002";
     /**
      * 删除失败
      */
-    public final static String OP_ERR_DELETE = "19003";
+    public final static String DELETE_ERROR = "19003";
     /**
      * 重复操作
      */

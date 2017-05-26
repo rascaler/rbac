@@ -15,14 +15,21 @@ import java.util.*;
  *
  * 公共状态码基类,规范公共状态码,不同系统要继承该类
  * 异常码格式：AAABBBCCCC
- * AAA 系统编码  BBB 系统模块编码  CCCC 异常编码
- * 1001001000
+ * AA 系统编码  BBB 系统模块编码  CCCC 异常编码
+ * 10 001 0001
  * Created by wurenqing on 3/17/17.
  */
 public class RbacEcode implements Serializable {
 
-    ///////////////////////////// organization
+    ///////////////////////////// organization  1001
     /** 组织不存在 */
-    public final static String ORGANIZATION_NOT_EXISTS = "";
+    public final static String ORGANIZATION_NOT_EXISTS = "100010001";
+
+    /** 组织中存在用户 */
+    public final static String ORGANIZATION_HAS_USERS = "100010002";
+
+    /** 不能删除根组织 */
+    public final static String CAN_NOT_DELETE_ROOT = "100010003";
+
 
 }

@@ -3,6 +3,7 @@ package com.redding.rbac.infrastructure.utils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class DefaultManager <T> implements BaseManager<T> {
     @Autowired
-    protected Mapper<T> mapper;
+    protected MyMapper<T> mapper;
 
     @Autowired
     protected SqlSession sqlSession;
@@ -35,8 +36,12 @@ public class DefaultManager <T> implements BaseManager<T> {
         return mapper.insert(entity);
     }
 
-    public int delete(Object key) {
+    public int deleteByKey(Object key) {
         return mapper.deleteByPrimaryKey(key);
+    }
+
+    public int delete(T entity){
+        return mapper.delete(entity);
     }
 
     public int updateAll(T entity) {
@@ -63,9 +68,16 @@ public class DefaultManager <T> implements BaseManager<T> {
         return mapper.selectAll();
     }
 
-
     public T selectOne(T entity) {
         return mapper.selectOne(entity);
+    }
+
+    public T selectFirst(T entity) {
+        return mapper.selectFirst(entity);
+    }
+
+    public T selectFirstByExample(Example example) {
+        return mapper.selectFirstByExample(example);
     }
 
 

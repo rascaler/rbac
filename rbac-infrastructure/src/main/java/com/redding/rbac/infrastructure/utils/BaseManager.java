@@ -1,5 +1,7 @@
 package com.redding.rbac.infrastructure.utils;
 
+import tk.mybatis.mapper.entity.Example;
+
 import java.util.List;
 
 /**
@@ -13,9 +15,15 @@ public interface BaseManager<T> {
 
     T selectOne(T entity);
 
+    T selectFirst(T entity);
+
+    T selectFirstByExample(Example example);
+
     int save(T entity);
 
-    int delete(Object key);
+    int deleteByKey(Object key);
+
+    int delete(T entity);
 
     int updateAll(T entity);
 
@@ -26,6 +34,7 @@ public interface BaseManager<T> {
     List<T> select(T entity);
 
     List<T> selectAll();
+
 
 
     int deleteByExample(Object example);

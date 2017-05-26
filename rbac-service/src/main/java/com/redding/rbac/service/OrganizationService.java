@@ -1,6 +1,7 @@
 package com.redding.rbac.service;
 
 import com.redding.rbac.commons.exception.SPIException;
+import com.redding.rbac.commons.pojo.dto.OrganizationDto;
 import com.redding.rbac.commons.pojo.dto.OrganizationEditDto;
 import com.redding.rbac.commons.pojo.dto.OrganizationNodeDto;
 
@@ -21,11 +22,13 @@ public interface OrganizationService {
      * @param organizationEditDto
      * @throws SPIException
      */
-    void saveOrganization(OrganizationEditDto organizationEditDto) throws SPIException;
+    OrganizationDto saveOrganization(OrganizationEditDto organizationEditDto) throws SPIException;
 
     /**
      * @param organizationEditDto
      * @throws SPIException
      */
-    void updateOrganization(OrganizationEditDto organizationEditDto) throws SPIException;
+    OrganizationDto updateOrganization(OrganizationEditDto organizationEditDto) throws SPIException;
+
+    void remove(Integer id) throws SPIException;
 }

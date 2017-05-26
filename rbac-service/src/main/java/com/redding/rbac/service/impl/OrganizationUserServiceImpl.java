@@ -5,4 +5,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrganizationUserServiceImpl implements OrganizationUserService {
+    @Override
+    public void getByOrgId(Integer id) {
+
+    }
 }

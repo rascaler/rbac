@@ -3,6 +3,7 @@ package com.redding.rbac.web.controller;
 import com.redding.rbac.commons.constant.BasicEcode;
 import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.pojo.dto.EnterpriseDto;
+import com.redding.rbac.commons.pojo.dto.OrganizationDto;
 import com.redding.rbac.commons.pojo.dto.OrganizationEditDto;
 import com.redding.rbac.commons.pojo.dto.OrganizationNodeDto;
 import com.redding.rbac.infrastructure.domain.Enterprise;
@@ -36,15 +37,21 @@ public class OrganizationController {
 
     @RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
     @OuterResponseBody
-    void saveOrganization(@RequestBody OrganizationEditDto organization) {
+    OrganizationDto saveOrganization(@RequestBody OrganizationEditDto organization) {
         // 获取父节点
         if(null == organization.getRoleIds() || organization.getRoleIds().isEmpty())
             throw new SPIException(BasicEcode.FAILED);
         organization.setEnterpriseId(EnterpriseDto.ENTERPRISE_ID_MOCK);
         if(null == organization.getId())
-          organizationService.saveOrganization(organization);
+          return organizationService.saveOrganization(organization);
         else
-          organizationService.updateOrganization(organization);
+          return organizationService.updateOrganization(organization);
+    }
+
+    @RequestMapping(value = "/remove", method = RequestMethod.POST)
+    @OuterResponseBody
+    void remove(@RequestParam Integer id) {
+        organizationService.remove(id);
     }
 
 

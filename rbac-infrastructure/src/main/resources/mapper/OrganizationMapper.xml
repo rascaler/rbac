@@ -10,11 +10,12 @@
     <result column="updatedDate" property="updatedDate" jdbcType="TIMESTAMP" />
     <result column="parentId" property="parentId" jdbcType="INTEGER" />
     <result column="pidList" property="pidList" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="enterpriseId" property="enterpriseId" jdbcType="INTEGER" />
   </resultMap>
 
-  <select id="selectSelfAndSub" resultMap="BaseResultMap">
-    SELECT * FROM tb_organization WHERE (find_in_set(#{id}, pidList) or id = #{id}) and enterpriseId = #{enterpriseId}
+  <select id="selectSelfAndSub" resultType="Organization">
+    SELECT id,parentId,name,enterpriseId FROM tb_organization WHERE (find_in_set(#{id}, pidList) or id = #{id}) and enterpriseId = #{enterpriseId}
   </select>
 </mapper>

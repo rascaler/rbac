@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class OrganizationDto implements Serializable {
     public static final int ROOT_PARENT = 0;
+
     private Integer id;
 
     /**
@@ -32,7 +33,15 @@ public class OrganizationDto implements Serializable {
      */
     private String name;
 
+    /**
+     * 企业id
+     */
     private Integer enterpriseId;
+
+    /**
+     * 描述
+     */
+    private String description;
 
     /**
      * @return id
@@ -150,5 +159,13 @@ public class OrganizationDto implements Serializable {
      */
     public void setEnterpriseId(Integer enterpriseId) {
         this.enterpriseId = enterpriseId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

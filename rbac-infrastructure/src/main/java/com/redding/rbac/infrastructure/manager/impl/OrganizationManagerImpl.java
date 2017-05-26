@@ -42,4 +42,12 @@ public class OrganizationManagerImpl extends DefaultManager<Organization> implem
         organizationMapper.insertSelective(organization);
         organizationRoleMapper.insertList(organizationRoles);
     }
+
+    @Override
+    public int remove(Integer id) {
+        OrganizationRole query = new OrganizationRole();
+        query.setOrganizationId(id);
+        organizationRoleMapper.delete(query);
+        return organizationMapper.deleteByPrimaryKey(id);
+    }
 }

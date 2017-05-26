@@ -21,7 +21,7 @@ import java.util.*;
  */
 public class RbacEcode implements Serializable {
 
-    ///////////////////////////// organization  1001
+    ///////////////////////////// organization  10001
     /** 组织不存在 */
     public final static String ORGANIZATION_NOT_EXISTS = "100010001";
 
@@ -30,6 +30,10 @@ public class RbacEcode implements Serializable {
 
     /** 不能删除根组织 */
     public final static String CAN_NOT_DELETE_ROOT = "100010003";
+
+    /** 组织存在子组织 */
+    public final static String ORGANIZATION_HAS_CHILDREN = "100010004";
+
 
 
 }

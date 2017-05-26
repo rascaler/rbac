@@ -118,20 +118,30 @@ public class OrganizationServiceImpl implements OrganizationService {
     /**
      * 验证组织架构是否可以删除
      * 删除组织条件：
+     * 1.根组织无法删除
+     * 2.有子组织不能删除
      * 1.组织中不能有用户，需要移除或者删除组织中的用户
-     * 2.根组织无法删除
      * @param id
      */
     private void validateRemove(Integer id){
+        // 判断是否为根组织
+        Organization organization = organizationManager.selectByKey(id);
+        if(null == organization)
+            throw new SPIException(RbacEcode.ORGANIZATION_NOT_EXISTS);
+        if(organization.getParentId() == OrganizationDto.ROOT_PARENT)
+            throw new SPIException(RbacEcode.CAN_NOT_DELETE_ROOT);
+        // 判断是否有子组织
+        Organization childQuery = new Organization();
+        childQuery.setParentId(id);
+        Organization child = organizationManager.selectFirst(childQuery);
+        if(null != child)
+            throw new SPIException(RbacEcode.ORGANIZATION_HAS_CHILDREN);
+        // 判断是否有用户
         OrganizationUser query = new OrganizationUser();
         query.setOrganizationId(id);
         OrganizationUser organizationUser =  organizationUserManager.selectFirst(query);
         if(null != organizationUser)
             throw new SPIException(RbacEcode.ORGANIZATION_HAS_USERS);
-        Organization organization = organizationManager.selectByKey(id);
-        if(null == organization)
-            throw new SPIException(RbacEcode.ORGANIZATION_NOT_EXISTS);
-        if(organization.getParentId() == 0)
-            throw new SPIException(RbacEcode.CAN_NOT_DELETE_ROOT);
+
     }
 }

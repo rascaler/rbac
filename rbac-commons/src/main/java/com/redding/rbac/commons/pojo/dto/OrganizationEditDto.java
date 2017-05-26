@@ -29,6 +29,11 @@ public class OrganizationEditDto implements Serializable {
     private Integer enterpriseId;
 
     /**
+     * 描述
+     */
+    private String description;
+
+    /**
      * 组织角色
      */
     private List<Integer> roleIds;
@@ -121,5 +126,13 @@ public class OrganizationEditDto implements Serializable {
 
     public void setRoleIds(List<Integer> roleIds) {
         this.roleIds = roleIds;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

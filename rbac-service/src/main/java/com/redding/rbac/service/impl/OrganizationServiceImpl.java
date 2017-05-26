@@ -96,8 +96,26 @@ public class OrganizationServiceImpl implements OrganizationService {
     public void remove(Integer id) throws SPIException {
         // 先验证是否可以删除
         validateRemove(id);
-        // 删除和角色的关联
+        // 删除组织和组织-角色关联
         organizationManager.remove(id);
+    }
+
+    @Override
+    public OrganizationEditDto getDetail(Integer id) throws SPIException {
+        Organization organization = organizationManager.selectByKey(id);
+        if(null == organization)
+            throw new SPIException(RbacEcode.ORGANIZATION_NOT_EXISTS);
+        OrganizationEditDto detail = BeanMapper.map(organization, OrganizationEditDto.class);
+        OrganizationRole query = new OrganizationRole();
+        query.setOrganizationId(id);
+        List<OrganizationRole> organizationRoles = organizationRoleManager.select(query);
+        if(null != organizationRoles && organizationRoles.size() > 0)
+            detail.setRoleIds(
+                    organizationRoles.stream()
+                    .map(OrganizationRole::getRoleId)
+                    .collect(Collectors.toList())
+            );
+        return detail;
     }
 
     /////////////////////////private method//////////////////////////////////

@@ -55,4 +55,10 @@ public class OrganizationController {
     }
 
 
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    @OuterResponseBody
+    OrganizationEditDto detail(@RequestParam Integer id) {
+        return organizationService.getDetail(id);
+    }
+
 }

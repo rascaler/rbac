@@ -163,4 +163,12 @@ public class Organization {
     public void setEnterpriseId(Integer enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

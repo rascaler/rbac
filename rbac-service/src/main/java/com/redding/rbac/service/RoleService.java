@@ -8,4 +8,13 @@ import java.util.List;
 public interface RoleService {
 
     List<RoleDto> getAll(Integer enterpriseId);
+
+    /**
+     * 查询部门可分配的角色
+     *
+     * @param organizationId
+     * @param enterpriseId
+     * @return
+     */
+    List<RoleDto> getOrganizationRoles(Integer organizationId, int enterpriseId);
 }

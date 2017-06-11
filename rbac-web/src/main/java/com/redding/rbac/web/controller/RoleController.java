@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -29,6 +30,11 @@ public class RoleController {
         return roleService.getAll(EnterpriseDto.ENTERPRISE_ID_MOCK);
     }
 
+    @RequestMapping(value = "/getOrganizationRoles", method = RequestMethod.GET)
+    @OuterResponseBody
+    List<RoleDto> getOrganizationRoles(@RequestParam Integer organizationId) {
+        return roleService.getOrganizationRoles(organizationId ,EnterpriseDto.ENTERPRISE_ID_MOCK);
+    }
 
 
 

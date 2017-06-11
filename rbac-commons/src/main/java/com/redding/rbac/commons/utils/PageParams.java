@@ -24,6 +24,8 @@ public class PageParams extends BasePoJo{
     @NotNull(message = "每页条数不能为空")
     private Integer pageSize;
 
+    private String orderBy;
+
     public Integer getPageNum() {
         return pageNum;
     }
@@ -38,5 +40,13 @@ public class PageParams extends BasePoJo{
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public String getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
     }
 }

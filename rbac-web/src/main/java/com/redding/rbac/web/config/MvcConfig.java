@@ -3,10 +3,12 @@ package com.redding.rbac.web.config;
 import com.redding.rbac.web.utils.context.ApplicationContextUtils;
 import com.redding.rbac.web.utils.context.EmptyToNullFormatAnnotationFormatterFactory;
 import com.redding.rbac.web.utils.context.ResponseBodyWrapFactoryBean;
+import org.hibernate.validator.HibernateValidator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -24,6 +26,13 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 
     @Bean
     ResponseBodyWrapFactoryBean getResponseBodyWrapFactoryBean(){return new ResponseBodyWrapFactoryBean();}
+
+    @Bean
+    LocalValidatorFactoryBean getLocalValidatorFactoryBean(){
+        LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
+        localValidatorFactoryBean.setProviderClass(HibernateValidator.class);
+        return localValidatorFactoryBean;
+    }
 
     @Override
     public void addFormatters(FormatterRegistry registry) {

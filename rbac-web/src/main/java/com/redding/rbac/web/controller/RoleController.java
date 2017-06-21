@@ -2,7 +2,10 @@ package com.redding.rbac.web.controller;
 
 import com.redding.rbac.commons.pojo.dto.EnterpriseDto;
 import com.redding.rbac.commons.pojo.dto.RoleDto;
+import com.redding.rbac.commons.pojo.dto.UserAuthDto;
+import com.redding.rbac.commons.pojo.dto.UserDto;
 import com.redding.rbac.service.RoleService;
+import com.redding.rbac.web.utils.SessionUtils;
 import com.redding.rbac.web.utils.annotation.OuterResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,13 +30,14 @@ public class RoleController {
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     @OuterResponseBody
     List<RoleDto> getAll() {
-        return roleService.getAll(EnterpriseDto.ENTERPRISE_ID_MOCK);
+        return roleService.getAll(SessionUtils.getUserAuth().getEnterpriseId());
     }
 
-    @RequestMapping(value = "/getOrganizationRoles", method = RequestMethod.GET)
+    @RequestMapping(value = "/getUserRoles", method = RequestMethod.GET)
     @OuterResponseBody
-    List<RoleDto> getOrganizationRoles(@RequestParam Integer organizationId) {
-        return roleService.getOrganizationRoles(organizationId ,EnterpriseDto.ENTERPRISE_ID_MOCK);
+    List<RoleDto> getUserRoles() {
+        UserAuthDto userAuthDto = SessionUtils.getUserAuth();
+        return roleService.getUserRoles(userAuthDto.getId(), userAuthDto.getEnterpriseId());
     }
 
 

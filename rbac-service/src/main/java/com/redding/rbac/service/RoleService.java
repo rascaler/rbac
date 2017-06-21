@@ -17,4 +17,12 @@ public interface RoleService {
      * @return
      */
     List<RoleDto> getOrganizationRoles(Integer organizationId, int enterpriseId);
+
+    /**
+     * 查询当前用户角色
+     * @param userId
+     * @param enterpriseId
+     * @return
+     */
+    List<RoleDto> getUserRoles(Integer userId, Integer enterpriseId);
 }

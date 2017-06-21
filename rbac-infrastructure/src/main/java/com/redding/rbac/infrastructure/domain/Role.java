@@ -31,6 +31,12 @@ public class Role {
     @Column(name = "enterpriseId")
     private Integer enterpriseId;
 
+    @Column(name = "parentId")
+    private Integer parentId;
+
+    @Column(name = "pidList")
+    private String pidList;
+
     /**
      * @return id
      */
@@ -131,5 +137,21 @@ public class Role {
      */
     public void setEnterpriseId(Integer enterpriseId) {
         this.enterpriseId = enterpriseId;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getPidList() {
+        return pidList;
+    }
+
+    public void setPidList(String pidList) {
+        this.pidList = pidList;
     }
 }

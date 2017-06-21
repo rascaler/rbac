@@ -31,7 +31,7 @@ public interface BaseManager<T> {
 
     List<T> selectByExample(Object example);
 
-    List<T> select(T entity);
+    List<T> selectList(T entity);
 
     List<T> selectAll();
 

@@ -60,7 +60,7 @@ public class DefaultManager <T> implements BaseManager<T> {
         return mapper.deleteByExample(example);
     }
 
-    public List<T> select(T entity) {
+    public List<T> selectList(T entity) {
         return mapper.select(entity);
     }
 

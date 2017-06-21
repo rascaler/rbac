@@ -21,6 +21,10 @@ public class RoleDto implements Serializable {
 
     private Integer enterpriseId;
 
+    private Integer parentId;
+
+    private String pidList;
+
     /**
      * @return id
      */
@@ -121,5 +125,21 @@ public class RoleDto implements Serializable {
      */
     public void setEnterpriseId(Integer enterpriseId) {
         this.enterpriseId = enterpriseId;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getPidList() {
+        return pidList;
+    }
+
+    public void setPidList(String pidList) {
+        this.pidList = pidList;
     }
 }

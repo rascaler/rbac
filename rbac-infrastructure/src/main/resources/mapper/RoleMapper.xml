@@ -12,5 +12,16 @@
     <result column="state" property="state" jdbcType="INTEGER" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="enterpriseId" property="enterpriseId" jdbcType="INTEGER" />
+    <result column="parentId" property="parent" jdbcType="INTEGER" />
+    <result column="pidList" property="pidList" jdbcType="VARCHAR" />
   </resultMap>
+
+  <select id="selectUserRoles" resultType="Role" parameterType="java.util.HashMap">
+    SELECT distinct r.id,r.name,r.state,r.description FROM tb_user u,tb_user_role ur,tb_role r
+    WHERE
+    AND u.id = ur.userId
+    AND r.id = ur.roleId
+    AND (find_in_set(r.id, r.pidList) OR r.id IN(SELECT roleId FROM tb_user,tb_user_role WHERE tb_user.id = tb_user_role.userId AND userId=1))
+    AND u.enterpriseId = 1
+  </select>
 </mapper>

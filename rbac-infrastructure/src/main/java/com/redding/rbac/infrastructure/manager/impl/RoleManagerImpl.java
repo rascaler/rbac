@@ -1,12 +1,12 @@
 package com.redding.rbac.infrastructure.manager.impl;
 
+import com.redding.rbac.commons.pojo.dto.RoleDto;
 import com.redding.rbac.infrastructure.domain.Role;
 import com.redding.rbac.infrastructure.manager.RoleManager;
 import com.redding.rbac.infrastructure.mapper.RoleMapper;
 import com.redding.rbac.infrastructure.utils.DefaultManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -21,5 +21,10 @@ public class RoleManagerImpl extends DefaultManager<Role> implements RoleManager
         Role query = new Role();
         query.setEnterpriseId(enterpriseId);
         return roleMapper.select(query);
+    }
+
+    @Override
+    public List<RoleDto> queryUserRoles(Integer userId, Integer enterpriseId) {
+        return roleMapper.selectUserRoles(userId,enterpriseId);
     }
 }

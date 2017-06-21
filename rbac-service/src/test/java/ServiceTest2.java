@@ -1,5 +1,6 @@
 import com.redding.rbac.commons.pojo.dto.EnterpriseDto;
 import com.redding.rbac.service.EnterpriseService;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author: wurenqing
@@ -70,6 +69,24 @@ public class ServiceTest2 {
             return null;
         }
     }
+
+    @Test
+    public void testSet(){
+        Set<Integer> nums = new HashSet<Integer>();
+        List<Integer> num1 = new ArrayList<Integer>(){{add(1);add(2);}};
+        List<Integer> num2 = new ArrayList<Integer>(){{add(1);add(2);}};
+        nums.addAll(num1);
+        nums.addAll(num2);
+        System.out.println(ToStringBuilder.reflectionToString(nums));
+    }
+
+    @Test
+    public void testSplit(){
+        String str ="1,2,3";
+        System.out.println(str.split(","));
+        return;
+    }
+
 
 
 }

@@ -108,7 +108,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         OrganizationEditDto detail = BeanMapper.map(organization, OrganizationEditDto.class);
         OrganizationRole query = new OrganizationRole();
         query.setOrganizationId(id);
-        List<OrganizationRole> organizationRoles = organizationRoleManager.select(query);
+        List<OrganizationRole> organizationRoles = organizationRoleManager.selectList(query);
         if(null != organizationRoles && organizationRoles.size() > 0)
             detail.setRoleIds(
                     organizationRoles.stream()

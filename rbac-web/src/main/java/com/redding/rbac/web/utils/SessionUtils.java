@@ -15,7 +15,6 @@ import java.util.List;
  * @Description:
  * @Date 2017/6/21 15:10
  */
-@Component
 public class SessionUtils {
 
     @Value("${login.required:true}")
@@ -28,9 +27,11 @@ public class SessionUtils {
         UserAuthDto userAuthDto = null;
         if(!loginEnable){
             userAuthDto = new UserAuthDto();
+            userAuthDto.setId(1);
             userAuthDto.setEnterpriseId(1);
             userAuthDto.setUsername("admin");
             roleService = ApplicationContextUtils.getBeansByClass(RoleService.class).get(0);
+            userTemp = userAuthDto;
         }
     }
 

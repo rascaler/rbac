@@ -1,5 +1,6 @@
 package com.redding.rbac.web.config;
 
+import com.redding.rbac.web.utils.SessionUtils;
 import com.redding.rbac.web.utils.context.ApplicationContextUtils;
 import com.redding.rbac.web.utils.context.EmptyToNullFormatAnnotationFormatterFactory;
 import com.redding.rbac.web.utils.context.ResponseBodyWrapFactoryBean;
@@ -22,10 +23,10 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
     private boolean corsEnable;
 
     @Bean
-    ApplicationContextUtils getApplicationContextProvider(){return new ApplicationContextUtils();}
+    ApplicationContextUtils applicationContextUtils(){return new ApplicationContextUtils();}
 
     @Bean
-    ResponseBodyWrapFactoryBean getResponseBodyWrapFactoryBean(){return new ResponseBodyWrapFactoryBean();}
+    ResponseBodyWrapFactoryBean responseBodyWrapFactoryBean(){return new ResponseBodyWrapFactoryBean();}
 
     @Bean
     LocalValidatorFactoryBean getLocalValidatorFactoryBean(){
@@ -33,6 +34,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
         localValidatorFactoryBean.setProviderClass(HibernateValidator.class);
         return localValidatorFactoryBean;
     }
+
+    @Bean
+    SessionUtils sessionUtils(){
+        return new SessionUtils();
+    }
+
 
     @Override
     public void addFormatters(FormatterRegistry registry) {

@@ -14,6 +14,7 @@ import com.redding.rbac.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -36,7 +37,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveOrUpdate(UserEditDto userEditDto) {
-        
+        if (null == userEditDto.getId()) { //新增
+            userManager.save(userEditDto);
+        } else {
+            userManager.update(userEditDto);
+        }
     }
 
 

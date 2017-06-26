@@ -1,5 +1,7 @@
 package com.redding.rbac.commons.pojo.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
@@ -73,6 +75,21 @@ public class UserEditDto implements Serializable {
      * 用户角色
      */
     private List<Integer> roleIds;
+
+    /**
+     * 用户类型
+     */
+    private Integer type;
+
+    /**
+     * 职位状态
+     */
+    private Integer postState;
+
+    /**
+     * 组织id
+     */
+    private List<Integer> organizationIds;
 
     /**
      * @return id
@@ -288,5 +305,29 @@ public class UserEditDto implements Serializable {
 
     public void setRoleIds(List<Integer> roleIds) {
         this.roleIds = roleIds;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getPostState() {
+        return postState;
+    }
+
+    public void setPostState(Integer postState) {
+        this.postState = postState;
+    }
+
+    public List<Integer> getOrganizationIds() {
+        return organizationIds;
+    }
+
+    public void setOrganizationIds(List<Integer> organizationIds) {
+        this.organizationIds = organizationIds;
     }
 }

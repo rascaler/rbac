@@ -73,6 +73,9 @@ public class User {
     @Column(name = "enterpriseId")
     private Integer enterpriseId;
 
+    @Column(name = "postState")
+    private Integer postState;
+
     /**
      * @return id
      */
@@ -279,5 +282,13 @@ public class User {
      */
     public void setEnterpriseId(Integer enterpriseId) {
         this.enterpriseId = enterpriseId;
+    }
+
+    public Integer getPostState() {
+        return postState;
+    }
+
+    public void setPostState(Integer postState) {
+        this.postState = postState;
     }
 }

@@ -2,11 +2,13 @@ package com.redding.rbac.web.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.redding.rbac.commons.pojo.dto.EnterpriseDto;
+import com.redding.rbac.commons.pojo.dto.UserAuthDto;
 import com.redding.rbac.commons.pojo.dto.UserDto;
 import com.redding.rbac.commons.pojo.dto.UserEditDto;
 import com.redding.rbac.commons.pojo.query.UserQuery;
 import com.redding.rbac.commons.utils.PageParams;
 import com.redding.rbac.service.UserService;
+import com.redding.rbac.web.utils.SessionUtils;
 import com.redding.rbac.web.utils.annotation.OuterResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +42,8 @@ public class UserController {
     @RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
     @OuterResponseBody
     void saveOrUpdate(@RequestBody @Valid UserEditDto userEditDto) {
-        userEditDto.setEnterpriseId(EnterpriseDto.ENTERPRISE_ID_MOCK);
+        UserAuthDto userAuthDto = SessionUtils.getUserAuth();
+        userEditDto.setEnterpriseId(userAuthDto.getEnterpriseId());
         userService.saveOrUpdate(userEditDto);
     }
 

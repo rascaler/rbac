@@ -36,9 +36,17 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     @OuterResponseBody
-    void saveOrUpdate(@RequestBody @Validated({Add.class}) UserEditDto userEditDto) {
+    void save(@RequestBody @Valid UserEditDto userEditDto) {
+        UserAuthDto userAuthDto = SessionUtils.getUserAuth();
+        userEditDto.setEnterpriseId(userAuthDto.getEnterpriseId());
+        userService.saveOrUpdate(userEditDto);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @OuterResponseBody
+    void update(@RequestBody @Valid UserEditDto userEditDto) {
         UserAuthDto userAuthDto = SessionUtils.getUserAuth();
         userEditDto.setEnterpriseId(userAuthDto.getEnterpriseId());
         userService.saveOrUpdate(userEditDto);

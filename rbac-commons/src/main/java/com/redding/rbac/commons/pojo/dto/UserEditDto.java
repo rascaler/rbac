@@ -1,10 +1,13 @@
 package com.redding.rbac.commons.pojo.dto;
 
+import com.redding.rbac.commons.utils.validation.Add;
+import com.redding.rbac.commons.utils.validation.Update;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +29,7 @@ public class UserEditDto implements Serializable {
     /**
      * 用户名
      */
-    @NotEmpty(message = "用户名不能为空")
+    @NotEmpty(groups = {Add.class}, message = "用户名不能为空")
     private String username;
 
     /**
@@ -38,6 +41,7 @@ public class UserEditDto implements Serializable {
     /**
      * 账户状态,默认值为1，0=禁用，1=启用
      */
+    @Null(groups = {Add.class, Update.class}, message = "账号状态必须为空")
     private Integer state;
 
     /**
@@ -63,7 +67,7 @@ public class UserEditDto implements Serializable {
     /**
      * 性别,默认值为0. 1=男,2=女,0=未知
      */
-    @NotNull(message = "性别不能为空")
+    @NotNull(groups = {Add.class, Update.class},message = "性别不能为空")
     private Integer sex;
 
     /**

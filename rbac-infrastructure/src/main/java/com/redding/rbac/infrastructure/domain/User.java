@@ -76,6 +76,9 @@ public class User {
     @Column(name = "postState")
     private Integer postState;
 
+    @Column(name = "type")
+    private Integer type;
+
     /**
      * @return id
      */
@@ -290,5 +293,13 @@ public class User {
 
     public void setPostState(Integer postState) {
         this.postState = postState;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

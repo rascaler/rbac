@@ -3,6 +3,7 @@ package com.redding.rbac.service;
 
 import com.github.pagehelper.PageInfo;
 import com.redding.rbac.commons.exception.SPIException;
+import com.redding.rbac.commons.pojo.dto.UserDetailDto;
 import com.redding.rbac.commons.pojo.dto.UserDto;
 import com.redding.rbac.commons.pojo.dto.UserEditDto;
 import com.redding.rbac.commons.pojo.query.UserQuery;
@@ -25,4 +26,13 @@ public interface UserService {
      * @param userEditDto
      */
     void saveOrUpdate(UserEditDto userEditDto);
+
+    /**
+     * 获取用户详情
+     *
+     * @param userId
+     * @param enterpriseId
+     * @return
+     */
+    UserDetailDto getUserDetail(Integer userId, Integer enterpriseId);
 }

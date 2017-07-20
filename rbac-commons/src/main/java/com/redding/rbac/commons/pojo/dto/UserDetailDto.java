@@ -2,6 +2,7 @@ package com.redding.rbac.commons.pojo.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class UserDetailDto implements Serializable {
     private Integer id;
@@ -57,6 +58,12 @@ public class UserDetailDto implements Serializable {
     private Integer sex;
 
     private Integer enterpriseId;
+
+    private Integer type;
+
+    private List<RoleDto> roles;
+
+    private List<OrganizationDto> organizations;
 
     /**
      * @return id
@@ -264,5 +271,29 @@ public class UserDetailDto implements Serializable {
      */
     public void setEnterpriseId(Integer enterpriseId) {
         this.enterpriseId = enterpriseId;
+    }
+
+    public List<RoleDto> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleDto> roles) {
+        this.roles = roles;
+    }
+
+    public List<OrganizationDto> getOrganizations() {
+        return organizations;
+    }
+
+    public void setOrganizations(List<OrganizationDto> organizations) {
+        this.organizations = organizations;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

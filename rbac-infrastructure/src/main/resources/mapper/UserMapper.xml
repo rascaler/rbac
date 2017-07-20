@@ -30,5 +30,6 @@
     <if test="state != null">
        AND u.state = #{state}
     </if>
+    group by u.id
   </select>
 </mapper>

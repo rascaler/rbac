@@ -1,20 +1,17 @@
 package com.redding.rbac.web.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.redding.rbac.commons.pojo.dto.EnterpriseDto;
-import com.redding.rbac.commons.pojo.dto.UserAuthDto;
-import com.redding.rbac.commons.pojo.dto.UserDto;
-import com.redding.rbac.commons.pojo.dto.UserEditDto;
+import com.redding.rbac.commons.pojo.dto.*;
 import com.redding.rbac.commons.pojo.query.UserQuery;
 import com.redding.rbac.commons.utils.PageParams;
+import com.redding.rbac.commons.utils.validation.Add;
 import com.redding.rbac.service.UserService;
 import com.redding.rbac.web.utils.SessionUtils;
 import com.redding.rbac.web.utils.annotation.OuterResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -41,10 +38,17 @@ public class UserController {
 
     @RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
     @OuterResponseBody
-    void saveOrUpdate(@RequestBody @Valid UserEditDto userEditDto) {
+    void saveOrUpdate(@RequestBody @Validated({Add.class}) UserEditDto userEditDto) {
         UserAuthDto userAuthDto = SessionUtils.getUserAuth();
         userEditDto.setEnterpriseId(userAuthDto.getEnterpriseId());
         userService.saveOrUpdate(userEditDto);
     }
+
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    @OuterResponseBody
+    UserDetailDto getUserDetail(@RequestParam Integer id) {
+        return userService.getUserDetail(id, SessionUtils.getUserAuth().getEnterpriseId());
+    }
+
 
 }

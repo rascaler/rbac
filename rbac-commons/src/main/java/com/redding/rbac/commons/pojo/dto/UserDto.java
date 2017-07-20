@@ -58,6 +58,8 @@ public class UserDto implements Serializable {
 
     private Integer enterpriseId;
 
+    private Integer type;
+
     /**
      * @return id
      */
@@ -264,5 +266,13 @@ public class UserDto implements Serializable {
      */
     public void setEnterpriseId(Integer enterpriseId) {
         this.enterpriseId = enterpriseId;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

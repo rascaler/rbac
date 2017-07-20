@@ -34,6 +34,8 @@ public class RbacEcode implements Serializable {
     /** 组织存在子组织 */
     public final static String ORGANIZATION_HAS_CHILDREN = "100010004";
 
+   ///////////////////////////// user  10002
+   public final static String USER_NOT_EXISTS = "100010001";
 
 
 }

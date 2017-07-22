@@ -60,6 +60,8 @@ public class UserDto implements Serializable {
 
     private Integer type;
 
+    private Integer postState;
+
     /**
      * @return id
      */
@@ -274,5 +276,13 @@ public class UserDto implements Serializable {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public Integer getPostState() {
+        return postState;
+    }
+
+    public void setPostState(Integer postState) {
+        this.postState = postState;
     }
 }

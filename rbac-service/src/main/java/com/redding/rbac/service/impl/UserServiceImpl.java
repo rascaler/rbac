@@ -2,6 +2,7 @@ package com.redding.rbac.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.redding.rbac.commons.constant.BasicEcode;
 import com.redding.rbac.commons.constant.RbacEcode;
 import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.pojo.dto.*;
@@ -12,6 +13,8 @@ import com.redding.rbac.infrastructure.domain.*;
 import com.redding.rbac.infrastructure.manager.*;
 import com.redding.rbac.service.UserService;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -21,6 +24,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserManager userManager;
@@ -87,5 +92,30 @@ public class UserServiceImpl implements UserService {
             detail.setOrganizations(BeanMapper.mapList(orgs, OrganizationDto.class));
         }
         return detail;
+    }
+
+    @Override
+    public void updatePostState(Integer id, Integer postState, Integer enterpriseId) {
+        User userUpdate = new User();
+        userUpdate.setPostState(postState);
+        Example example = new Example(User.class);
+        example.createCriteria().andEqualTo("id", id).andEqualTo("enterpriseId", enterpriseId);
+        if(userManager.updateByExampleSelective(userUpdate, example) <= 0){
+            logger.error("用户id={},enterpriseId={}不存在", id, enterpriseId);
+            throw new SPIException(BasicEcode.FAILED);
+        }
+    }
+
+    @Override
+    public void updateState(Integer id, Integer state, Integer enterpriseId) {
+        User userUpdate = new User();
+        userUpdate.setState(state);
+        Example example = new Example(User.class);
+        example.createCriteria().andEqualTo("id", id).andEqualTo("enterpriseId", enterpriseId);
+        userManager.updateByExampleSelective(userUpdate, example);
+        if(userManager.updateByExampleSelective(userUpdate, example) <= 0){
+            logger.error("用户id={},enterpriseId={}不存在", id, enterpriseId);
+            throw new SPIException(BasicEcode.FAILED);
+        }
     }
 }

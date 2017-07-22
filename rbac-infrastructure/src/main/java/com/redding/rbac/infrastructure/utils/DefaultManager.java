@@ -48,7 +48,7 @@ public class DefaultManager <T> implements BaseManager<T> {
         return mapper.updateByPrimaryKey(entity);
     }
 
-    public int updateNotNull(T entity) {
+    public int updateSelective(T entity) {
         return mapper.updateByPrimaryKeySelective(entity);
     }
 

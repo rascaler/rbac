@@ -27,7 +27,7 @@ public interface BaseManager<T> {
 
     int updateAll(T entity);
 
-    int updateNotNull(T entity);
+    int updateSelective(T entity);
 
     List<T> selectByExample(Object example);
 

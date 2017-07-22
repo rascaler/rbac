@@ -35,4 +35,21 @@ public interface UserService {
      * @return
      */
     UserDetailDto getUserDetail(Integer userId, Integer enterpriseId);
+
+    /**
+     * 离职
+     *
+     * @param id
+     * @param postState
+     * @param enterpriseId
+     */
+    void updatePostState(Integer id, Integer postState, Integer enterpriseId);
+
+    /**
+     * 修改账户状态
+     * @param id
+     * @param state
+     * @param enterpriseId
+     */
+    void updateState(Integer id, Integer state, Integer enterpriseId);
 }

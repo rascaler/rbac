@@ -28,6 +28,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * @param userQuery
+     * @param pageParams
+     * @return
+     */
     @RequestMapping(value = "/pageUsers", method = RequestMethod.GET)
     @OuterResponseBody
     PageInfo<UserDto> pageUsers(UserQuery userQuery, PageParams pageParams) {
@@ -36,6 +41,9 @@ public class UserController {
     }
 
 
+    /**
+     * @param userEditDto
+     */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @OuterResponseBody
     void save(@RequestBody @Valid UserEditDto userEditDto) {
@@ -44,6 +52,9 @@ public class UserController {
         userService.saveOrUpdate(userEditDto);
     }
 
+    /**
+     * @param userEditDto
+     */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @OuterResponseBody
     void update(@RequestBody @Valid UserEditDto userEditDto) {
@@ -52,10 +63,34 @@ public class UserController {
         userService.saveOrUpdate(userEditDto);
     }
 
+    /**
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @OuterResponseBody
     UserDetailDto getUserDetail(@RequestParam Integer id) {
         return userService.getUserDetail(id, SessionUtils.getUserAuth().getEnterpriseId());
+    }
+
+    /**
+     * @param id
+     * @param postState
+     */
+    @RequestMapping(value = "/leave", method = RequestMethod.POST)
+    @OuterResponseBody
+    void leave(@RequestParam Integer id, @RequestParam Integer postState){
+        userService.updatePostState(id, postState, SessionUtils.getUserAuth().getEnterpriseId());
+    }
+
+    /**
+     * @param id
+     * @param state
+     */
+    @RequestMapping(value = "/updateState", method = RequestMethod.POST)
+    @OuterResponseBody
+    void updateState(@RequestParam Integer id, @RequestParam Integer state){
+        userService.updateState(id, state, SessionUtils.getUserAuth().getEnterpriseId());
     }
 
 

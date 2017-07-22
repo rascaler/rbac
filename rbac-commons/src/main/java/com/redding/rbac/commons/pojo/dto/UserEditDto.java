@@ -36,7 +36,7 @@ public class UserEditDto implements Serializable {
     /**
      * 密码
      */
-    @NotEmpty(message = "密码不能为空")
+    @NotEmpty(groups = {Add.class},message = "密码不能为空")
     private transient String password;
 
     /**
@@ -58,11 +58,13 @@ public class UserEditDto implements Serializable {
     /**
      * 邮箱
      */
+    @NotEmpty(groups = {Add.class, Update.class}, message = "邮箱不能为空")
     private String email;
 
     /**
      * 电话
      */
+    @NotEmpty(groups = {Add.class, Update.class}, message = "手机号码不能为空")
     private String phone;
 
     /**
@@ -84,6 +86,7 @@ public class UserEditDto implements Serializable {
     /**
      * 用户类型
      */
+    @NotNull(groups = {Add.class, Update.class},message = "用户类型不能为空")
     private Integer type;
 
     /**

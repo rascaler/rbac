@@ -48,11 +48,13 @@ public class UserEditDto implements Serializable {
     /**
      * 昵称
      */
+    @NotEmpty(groups = {Add.class, Update.class},message = "昵称不能为空")
     private String nickName;
 
     /**
      * 真实姓名
      */
+    @NotEmpty(groups = {Add.class, Update.class},message = "真实姓名不能为空")
     private String name;
 
     /**

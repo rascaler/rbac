@@ -5,6 +5,7 @@ import com.redding.rbac.commons.pojo.dto.*;
 import com.redding.rbac.commons.pojo.query.UserQuery;
 import com.redding.rbac.commons.utils.PageParams;
 import com.redding.rbac.commons.utils.validation.Add;
+import com.redding.rbac.commons.utils.validation.Update;
 import com.redding.rbac.service.UserService;
 import com.redding.rbac.web.utils.SessionUtils;
 import com.redding.rbac.web.utils.annotation.OuterResponseBody;
@@ -46,7 +47,7 @@ public class UserController {
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @OuterResponseBody
-    void save(@RequestBody @Valid UserEditDto userEditDto) {
+    void save(@RequestBody @Validated(value = {Add.class}) UserEditDto userEditDto) {
         UserAuthDto userAuthDto = SessionUtils.getUserAuth();
         userEditDto.setEnterpriseId(userAuthDto.getEnterpriseId());
         userService.saveOrUpdate(userEditDto);
@@ -57,7 +58,7 @@ public class UserController {
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @OuterResponseBody
-    void update(@RequestBody @Valid UserEditDto userEditDto) {
+    void update(@RequestBody @Validated(value = {Update.class}) UserEditDto userEditDto) {
         UserAuthDto userAuthDto = SessionUtils.getUserAuth();
         userEditDto.setEnterpriseId(userAuthDto.getEnterpriseId());
         userService.saveOrUpdate(userEditDto);

@@ -30,6 +30,9 @@
     <if test="state != null">
        AND u.state = #{state}
     </if>
+    <if test="postState != null">
+      AND u.postState = #{postState}
+    </if>
     group by u.id
   </select>
 </mapper>

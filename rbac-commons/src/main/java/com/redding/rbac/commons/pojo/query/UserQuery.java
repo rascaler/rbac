@@ -35,6 +35,10 @@ public class UserQuery extends BasePoJo{
     private Integer state;
 
     /**
+     * 职位状态
+     */
+    private Integer postState;
+    /**
      * 企业id
      */
 
@@ -79,5 +83,13 @@ public class UserQuery extends BasePoJo{
 
     public void setEnterpriseId(Integer enterpriseId) {
         this.enterpriseId = enterpriseId;
+    }
+
+    public Integer getPostState() {
+        return postState;
+    }
+
+    public void setPostState(Integer postState) {
+        this.postState = postState;
     }
 }

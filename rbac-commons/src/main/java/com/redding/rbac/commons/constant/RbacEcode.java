@@ -37,5 +37,8 @@ public class RbacEcode implements Serializable {
    ///////////////////////////// user  10002
    public final static String USER_NOT_EXISTS = "100010001";
 
+    ///////////////////////////// role  10003
+    public final static String ROLE_NOT_EXISTS = "100030001";
+
 
 }

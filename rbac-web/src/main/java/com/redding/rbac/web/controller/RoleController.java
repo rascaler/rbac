@@ -1,14 +1,17 @@
 package com.redding.rbac.web.controller;
 
-import com.redding.rbac.commons.pojo.dto.EnterpriseDto;
-import com.redding.rbac.commons.pojo.dto.RoleDto;
-import com.redding.rbac.commons.pojo.dto.UserAuthDto;
-import com.redding.rbac.commons.pojo.dto.UserDto;
+import com.github.pagehelper.PageInfo;
+import com.redding.rbac.commons.pojo.dto.*;
+import com.redding.rbac.commons.pojo.query.RoleQuery;
+import com.redding.rbac.commons.utils.PageParams;
+import com.redding.rbac.commons.utils.validation.Add;
+import com.redding.rbac.commons.utils.validation.Update;
 import com.redding.rbac.service.RoleService;
 import com.redding.rbac.web.utils.SessionUtils;
 import com.redding.rbac.web.utils.annotation.OuterResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,6 +43,26 @@ public class RoleController {
         return roleService.getUserRoles(userAuthDto.getId(), userAuthDto.getEnterpriseId());
     }
 
+    @RequestMapping(value = "/pageRoles", method = RequestMethod.GET)
+    @OuterResponseBody
+    PageInfo<RoleDto> pageRoles(RoleQuery roleQuery, PageParams pageParams) {
+        UserAuthDto userAuthDto = SessionUtils.getUserAuth();
+        return roleService.pageRoles(roleQuery, pageParams);
+    }
 
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @OuterResponseBody
+    void save(@Validated(value = {Add.class}) RoleEditDto roleEditDto) {
+        UserAuthDto userAuthDto = SessionUtils.getUserAuth();
+        roleEditDto.setEnterpriseId(roleEditDto.getEnterpriseId());
+        roleService.save(roleEditDto);
+    }
 
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @OuterResponseBody
+    void update(@Validated(value = {Update.class}) RoleEditDto roleEditDto) {
+        UserAuthDto userAuthDto = SessionUtils.getUserAuth();
+        roleEditDto.setEnterpriseId(userAuthDto.getEnterpriseId());
+        roleService.update(roleEditDto);
+    }
 }

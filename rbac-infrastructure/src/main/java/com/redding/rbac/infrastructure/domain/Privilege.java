@@ -1,14 +1,22 @@
 package com.redding.rbac.infrastructure.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "tb_privilege")
+@Getter
+@Setter
 public class Privilege {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "createdDate")
     private Date createdDate;
@@ -18,60 +26,4 @@ public class Privilege {
 
     @Column(name = "enterpriseId")
     private Integer enterpriseId;
-
-    /**
-     * @return id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * @return createdDate
-     */
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    /**
-     * @param createdDate
-     */
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    /**
-     * @return updatedDate
-     */
-    public Date getUpdatedDate() {
-        return updatedDate;
-    }
-
-    /**
-     * @param updatedDate
-     */
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    /**
-     * @return enterpriseId
-     */
-    public Integer getEnterpriseId() {
-        return enterpriseId;
-    }
-
-    /**
-     * @param enterpriseId
-     */
-    public void setEnterpriseId(Integer enterpriseId) {
-        this.enterpriseId = enterpriseId;
-    }
 }

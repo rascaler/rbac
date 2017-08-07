@@ -1,8 +1,13 @@
 package com.redding.rbac.infrastructure.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Table(name = "tb_organization_user")
+@Getter
+@Setter
 public class OrganizationUser {
     @Id
     @Column(name = "id")
@@ -14,46 +19,4 @@ public class OrganizationUser {
 
     @Column(name = "userId")
     private Integer userId;
-
-    /**
-     * @return id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * @return organizationId
-     */
-    public Integer getOrganizationId() {
-        return organizationId;
-    }
-
-    /**
-     * @param organizationId
-     */
-    public void setOrganizationId(Integer organizationId) {
-        this.organizationId = organizationId;
-    }
-
-    /**
-     * @return userId
-     */
-    public Integer getUserId() {
-        return userId;
-    }
-
-    /**
-     * @param userId
-     */
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 }

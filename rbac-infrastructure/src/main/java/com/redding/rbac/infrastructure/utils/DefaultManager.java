@@ -1,5 +1,6 @@
 package com.redding.rbac.infrastructure.utils;
 
+import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
@@ -93,4 +94,15 @@ public class DefaultManager <T> implements BaseManager<T> {
     public int selectCountByExample(Object example) {
         return mapper.selectCountByExample(example);
     }
+
+    public List<T> selectLimit(T entity, int limit){
+        PageHelper.startPage(1, limit, false);
+        return mapper.select(entity);
+    }
+
+    public List<T> selectLimitByExample(Object example, int limit){
+        PageHelper.startPage(1, limit, false);
+        return mapper.selectByExample(example);
+    }
+
 }

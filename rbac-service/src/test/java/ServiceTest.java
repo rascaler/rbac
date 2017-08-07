@@ -29,7 +29,7 @@ public class ServiceTest {
     }
 
     @Test
-    public void testLimit(){
+    public void testSelectFirst(){
 //        Enterprise enterprise = new Enterprise();
 //        enterprise.setId(1);
 //        enterpriseManager.selectFirst(enterprise);
@@ -38,4 +38,16 @@ public class ServiceTest {
         example.createCriteria().andEqualTo("id", 1);
         enterpriseManager.selectFirstByExample(example);
     }
+
+    @Test
+    public void testLimit(){
+        Enterprise enterprise = new Enterprise();
+        enterprise.setId(1);
+        enterpriseManager.selectLimit(enterprise,1);
+
+//        Example example = new Example(Enterprise.class);
+//        example.createCriteria().andEqualTo("id", 1);
+//        enterpriseManager.selectFirstByExample(example);
+    }
+
 }

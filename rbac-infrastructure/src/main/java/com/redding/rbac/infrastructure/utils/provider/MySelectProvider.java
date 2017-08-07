@@ -31,4 +31,27 @@ public class MySelectProvider extends MapperTemplate {
         sql.append(" limit 1");
         return sql.toString();
     }
+
+
+    public String selectLimit(MappedStatement ms){
+        Class entityClass = this.getEntityClass(ms);
+        this.setResultType(ms, entityClass);
+        StringBuilder sql = new StringBuilder();
+        sql.append(SqlHelper.selectAllColumns(entityClass));
+        sql.append(SqlHelper.fromTable(entityClass, this.tableName(entityClass)));
+        sql.append(SqlHelper.whereAllIfColumns(entityClass, this.isNotEmpty()));
+        sql.append(" limit #{limit}");
+        return sql.toString();
+    }
+
+    public String selectLimitByExample(MappedStatement ms){
+        Class entityClass = this.getEntityClass(ms);
+        this.setResultType(ms, entityClass);
+        StringBuilder sql = new StringBuilder();
+        sql.append(SqlHelper.selectAllColumns(entityClass));
+        sql.append(SqlHelper.fromTable(entityClass, this.tableName(entityClass)));
+        sql.append(SqlHelper.exampleWhereClause());
+        sql.append(" limit #{limit}");
+        return sql.toString();
+    }
 }

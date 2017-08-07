@@ -44,4 +44,8 @@ public interface BaseManager<T> {
     int insertSelective(T entity);
 
     int selectCountByExample(Object example);
+
+    List<T> selectLimit(T entity, int limit);
+
+    List<T> selectLimitByExample(Object example, int limit);
 }

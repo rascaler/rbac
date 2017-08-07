@@ -2,6 +2,7 @@ package com.redding.rbac.infrastructure.manager;
 
 import com.redding.rbac.commons.pojo.dto.RoleDto;
 import com.redding.rbac.infrastructure.domain.Role;
+import com.redding.rbac.infrastructure.domain.RolePrivilege;
 import com.redding.rbac.infrastructure.utils.BaseManager;
 
 import java.util.List;
@@ -22,4 +23,18 @@ public interface RoleManager extends BaseManager<Role> {
      * @return
      */
     List<RoleDto> queryUserRoles(Integer userId, Integer enterpriseId);
+
+    /**
+     * @param role
+     * @param rolePrivileges
+     * @return
+     */
+    int update(Role role, List<RolePrivilege> rolePrivileges);
+
+    /**
+     * @param role
+     * @param rolePrivileges
+     * @return
+     */
+    int save(Role role, List<RolePrivilege> rolePrivileges);
 }

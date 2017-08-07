@@ -2,6 +2,8 @@ package com.redding.rbac.commons.pojo.query;
 
 import com.redding.rbac.commons.pojo.BasePoJo;
 import com.redding.rbac.commons.utils.annotation.EmptyToNullFormat;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -9,6 +11,8 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @Description:
  * @Date 2017/5/18 8:58
  */
+@Getter
+@Setter
 public class UserQuery extends BasePoJo{
 
     private static final long serialVersionUID = 2125275927365284905L;

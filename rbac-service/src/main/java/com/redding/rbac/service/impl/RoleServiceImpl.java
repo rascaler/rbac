@@ -1,10 +1,16 @@
 package com.redding.rbac.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.redding.rbac.commons.constant.BasicEcode;
 import com.redding.rbac.commons.constant.DefaultStateEnum;
+import com.redding.rbac.commons.constant.RbacEcode;
 import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.pojo.dto.RoleDto;
+import com.redding.rbac.commons.pojo.dto.RoleEditDto;
+import com.redding.rbac.commons.pojo.query.RoleQuery;
 import com.redding.rbac.commons.utils.BeanMapper;
+import com.redding.rbac.commons.utils.PageParams;
 import com.redding.rbac.infrastructure.domain.*;
 import com.redding.rbac.infrastructure.manager.OrganizationRoleManager;
 import com.redding.rbac.infrastructure.manager.OrganizationUserManager;
@@ -12,6 +18,8 @@ import com.redding.rbac.infrastructure.manager.RoleManager;
 import com.redding.rbac.infrastructure.manager.UserRoleManager;
 import com.redding.rbac.service.RoleService;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -21,6 +29,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class RoleServiceImpl implements RoleService {
+    private Logger logger = LoggerFactory.getLogger(RoleServiceImpl.class);
     @Autowired
     private RoleManager roleManager;
 
@@ -94,5 +103,63 @@ public class RoleServiceImpl implements RoleService {
         roleExample.clear();
         roleExample.createCriteria().andIn("id", roleIds);
         return BeanMapper.mapList(roleManager.selectByExample(roleExample), RoleDto.class);
+    }
+
+    @Override
+    public PageInfo<RoleDto> pageRoles(RoleQuery roleQuery, PageParams pageParams) {
+        PageHelper.startPage(pageParams.getPageNum(), pageParams.getPageSize());
+        Example example = new Example(Role.class);
+        Example.Criteria criteria = example.createCriteria();
+        if(StringUtils.isNotEmpty(roleQuery.getName()))
+            criteria.andLike("name", roleQuery.getName() + "%");
+        if(null != roleQuery.getState())
+            criteria.andEqualTo("state", roleQuery.getState());
+        criteria.andEqualTo("enterpriseId", roleQuery.getEnterpriseId());
+        PageInfo pageInfo = new PageInfo(roleManager.selectByExample(example));
+        pageInfo.setList(BeanMapper.mapList(pageInfo.getList(), RoleDto.class));
+        return pageInfo;
+    }
+
+    @Override
+    public int save(RoleEditDto roleEditDto) {
+        Role role = BeanMapper.map(roleEditDto, Role.class);
+        List<RolePrivilege> rolePrivileges = new ArrayList<RolePrivilege>();
+        roleEditDto.getPrivilegeIds().forEach(p -> {
+            RolePrivilege rolePrivilege = new RolePrivilege();
+            rolePrivilege.setPrivilegeId(p);
+            rolePrivileges.add(rolePrivilege);
+        });
+        // 查询父节点
+        if(null != roleEditDto.getParentId()) {
+          Role parent = roleManager.selectByKey(roleEditDto.getParentId());
+          if(null == parent){
+             logger.error("角色id={}不存在", roleEditDto.getParentId());
+             throw new SPIException(RbacEcode.ROLE_NOT_EXISTS);
+          }
+          role.setPidList( StringUtils.isNotEmpty(role.getPidList()) ? role.getPidList() + "," + role.getId() : role.getId().toString());
+        }
+        return roleManager.save(role, rolePrivileges);
+    }
+
+    @Override
+    public int update(RoleEditDto roleEditDto) {
+        Role role = BeanMapper.map(roleEditDto, Role.class);
+        List<RolePrivilege> rolePrivileges = new ArrayList<RolePrivilege>();
+        roleEditDto.getPrivilegeIds().forEach(p -> {
+            RolePrivilege rolePrivilege = new RolePrivilege();
+            rolePrivilege.setPrivilegeId(p);
+            rolePrivilege.setRoleId(roleEditDto.getId());
+            rolePrivileges.add(rolePrivilege);
+        });
+        // 查询父节点
+        if(null != roleEditDto.getParentId()) {
+            Role parent = roleManager.selectByKey(roleEditDto.getParentId());
+            if(null == parent){
+                logger.error("角色id={}不存在", roleEditDto.getParentId());
+                throw new SPIException(RbacEcode.ROLE_NOT_EXISTS);
+            }
+            role.setPidList( StringUtils.isNotEmpty(role.getPidList()) ? parent.getPidList() + "," + parent.getId() : parent.getId().toString());
+        }
+        return roleManager.update(role, rolePrivileges);
     }
 }

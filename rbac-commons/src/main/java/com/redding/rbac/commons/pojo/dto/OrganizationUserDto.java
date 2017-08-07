@@ -1,7 +1,12 @@
 package com.redding.rbac.commons.pojo.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
+@Getter
+@Setter
 public class OrganizationUserDto implements Serializable {
     private Integer id;
 
@@ -9,45 +14,4 @@ public class OrganizationUserDto implements Serializable {
 
     private Integer userId;
 
-    /**
-     * @return id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * @return organizationId
-     */
-    public Integer getOrganizationId() {
-        return organizationId;
-    }
-
-    /**
-     * @param organizationId
-     */
-    public void setOrganizationId(Integer organizationId) {
-        this.organizationId = organizationId;
-    }
-
-    /**
-     * @return userId
-     */
-    public Integer getUserId() {
-        return userId;
-    }
-
-    /**
-     * @param userId
-     */
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 }

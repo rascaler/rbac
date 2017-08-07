@@ -1,10 +1,12 @@
-package com.redding.rbac.commons.pojo.dto;
+package com.redding.rbac.commons.pojo.dto.auth;
 
+import com.redding.rbac.commons.pojo.dto.RoleDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -62,5 +64,7 @@ public class UserAuthDto implements Serializable {
     private Integer sex;
 
     private Integer enterpriseId;
+
+    private List<RoleAuthDto> roles;
 
 }

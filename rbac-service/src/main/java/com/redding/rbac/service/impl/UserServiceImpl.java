@@ -6,6 +6,8 @@ import com.redding.rbac.commons.constant.BasicEcode;
 import com.redding.rbac.commons.constant.RbacEcode;
 import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.pojo.dto.*;
+import com.redding.rbac.commons.pojo.dto.auth.RoleAuthDto;
+import com.redding.rbac.commons.pojo.dto.auth.UserAuthDto;
 import com.redding.rbac.commons.pojo.query.UserQuery;
 import com.redding.rbac.commons.utils.BeanMapper;
 import com.redding.rbac.commons.utils.PageParams;
@@ -19,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -117,5 +120,26 @@ public class UserServiceImpl implements UserService {
             logger.error("用户id={},enterpriseId={}不存在", id, enterpriseId);
             throw new SPIException(BasicEcode.FAILED);
         }
+    }
+
+    @Override
+    public UserAuthDto getUserAuth(String username) {
+        UserAuthDto userAuth = new UserAuthDto();
+        User query = new User();
+        query.setUsername(username);
+        User user = userManager.selectOne(query);
+        if(null == user)
+            throw new SPIException(BasicEcode.USER_ERR_LOGIN);
+        userAuth = BeanMapper.map(user, UserAuthDto.class);
+        // todo 获取角色
+        List<RoleAuthDto> roles = new ArrayList<RoleAuthDto>();
+        RoleAuthDto role1 = new RoleAuthDto();
+        role1.setId(1);
+        role1.setCode("admin");
+        role1.setName("超级管理员");
+        roles.add(role1);
+        // todo 获取权限
+        role1.setPrivileges(new ArrayList<String>(){{ add("1"); }});
+        return userAuth;
     }
 }

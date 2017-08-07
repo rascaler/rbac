@@ -2,6 +2,7 @@ package com.redding.rbac.web.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.redding.rbac.commons.pojo.dto.*;
+import com.redding.rbac.commons.pojo.dto.auth.UserAuthDto;
 import com.redding.rbac.commons.pojo.query.UserQuery;
 import com.redding.rbac.commons.utils.PageParams;
 import com.redding.rbac.commons.utils.validation.Add;
@@ -9,13 +10,13 @@ import com.redding.rbac.commons.utils.validation.Update;
 import com.redding.rbac.service.UserService;
 import com.redding.rbac.web.utils.SessionUtils;
 import com.redding.rbac.web.utils.annotation.OuterResponseBody;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
 
 /**
  * @Author: wurenqing
@@ -92,6 +93,18 @@ public class UserController {
     @OuterResponseBody
     void updateState(@RequestParam Integer id, @RequestParam Integer state){
         userService.updateState(id, state, SessionUtils.getUserAuth().getEnterpriseId());
+    }
+
+    /**
+     * @param username
+     * @param password
+     */
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @OuterResponseBody
+    void login(@RequestParam String username, @RequestParam String password){
+        UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
+        Subject subject = SecurityUtils.getSubject();
+        subject.login(usernamePasswordToken);
     }
 
 

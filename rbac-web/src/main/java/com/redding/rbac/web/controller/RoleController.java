@@ -2,6 +2,7 @@ package com.redding.rbac.web.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.redding.rbac.commons.pojo.dto.*;
+import com.redding.rbac.commons.pojo.dto.auth.UserAuthDto;
 import com.redding.rbac.commons.pojo.query.RoleQuery;
 import com.redding.rbac.commons.utils.PageParams;
 import com.redding.rbac.commons.utils.validation.Add;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public class RoleController {
         roleService.save(roleEditDto);
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     @OuterResponseBody
     void update(@Validated(value = {Update.class}) RoleEditDto roleEditDto) {
         UserAuthDto userAuthDto = SessionUtils.getUserAuth();

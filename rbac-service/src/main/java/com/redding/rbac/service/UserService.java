@@ -3,6 +3,7 @@ package com.redding.rbac.service;
 
 import com.github.pagehelper.PageInfo;
 import com.redding.rbac.commons.exception.SPIException;
+import com.redding.rbac.commons.pojo.dto.auth.UserAuthDto;
 import com.redding.rbac.commons.pojo.dto.UserDetailDto;
 import com.redding.rbac.commons.pojo.dto.UserDto;
 import com.redding.rbac.commons.pojo.dto.UserEditDto;
@@ -52,4 +53,10 @@ public interface UserService {
      * @param enterpriseId
      */
     void updateState(Integer id, Integer state, Integer enterpriseId);
+
+    /**
+     * @param username
+     * @return
+     */
+    UserAuthDto getUserAuth(String username);
 }

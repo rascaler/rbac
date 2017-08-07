@@ -1,14 +1,10 @@
 package com.redding.rbac.web.utils;
 
-import com.redding.rbac.commons.constant.BasicEcode;
 import com.redding.rbac.commons.exception.SPIException;
-import com.redding.rbac.commons.pojo.dto.UserAuthDto;
+import com.redding.rbac.commons.pojo.dto.auth.UserAuthDto;
 import com.redding.rbac.service.RoleService;
 import com.redding.rbac.web.utils.context.ApplicationContextUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 /**
  * @Author: wurenqing

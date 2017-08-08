@@ -1,8 +1,11 @@
 package com.redding.rbac.web.config;
 
+import com.redding.rbac.commons.constant.BasicEcode;
+import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.pojo.dto.auth.UserAuthDto;
 import com.redding.rbac.service.UserService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -15,9 +18,11 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.websocket.Session;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -28,6 +33,9 @@ import java.util.Map;
 public class ShiroConfig {
 
     private static Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+
+    @Value("${login.required:true}")
+    private static boolean loginEnable;
 
     @Bean
     public MyRealm myRealm() {
@@ -73,7 +81,10 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean
                 .setSecurityManager(getDefaultWebSecurityManager());
-        shiroFilterFactoryBean.setLoginUrl("http://localhost:9090/rbac/login");
+        if(loginEnable)
+            shiroFilterFactoryBean.setLoginUrl("/login");
+        else
+            shiroFilterFactoryBean.setLoginUrl("/autoLogin");
         shiroFilterFactoryBean.setSuccessUrl("/sa/index");
         filterChainDefinitionMap.put("/sa/**", "authc");
         filterChainDefinitionMap.put("/role/**", "authc,perms[admin:role]");
@@ -121,8 +132,9 @@ class MyRealm extends AuthorizingRealm{
         String username = token.getUsername();
         if(StringUtils.isNotEmpty(username)){
             UserAuthDto userAuth = userService.getUserAuth(username);
-            if(null == userAuth)
-                return null;
+            if(null == userAuth || !userAuth.getPassword().equals(new String(token.getPassword())))
+                throw new SPIException(BasicEcode.USER_ERR_LOGIN);
+            SecurityUtils.getSubject().getSession().setAttribute("userAuth", userAuth);
             return new SimpleAuthenticationInfo(userAuth.getUsername(), userAuth.getPassword(), getName());
         }
         return null;

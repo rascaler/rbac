@@ -17,6 +17,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,11 +36,14 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
+    @Value("${login.required:true}")
+    private static boolean loginEnable;
+
     /**
      * @param username
      * @param password
      */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @OuterResponseBody
     void login(@RequestParam String username, @RequestParam String password){
         UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
@@ -47,5 +51,20 @@ public class HomeController {
         subject.login(usernamePasswordToken);
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @OuterResponseBody
+    void login(){
+        SecurityUtils.getSubject().logout();
+    }
 
+
+    @RequestMapping(value = "/autoLogin", method = RequestMethod.GET)
+    @OuterResponseBody
+    void autoLogin(){
+        if(!loginEnable){
+            UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken("admin","123");
+            Subject subject = SecurityUtils.getSubject();
+            subject.login(usernamePasswordToken);
+        }
+    }
 }

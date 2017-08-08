@@ -73,10 +73,11 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean
                 .setSecurityManager(getDefaultWebSecurityManager());
-        shiroFilterFactoryBean.setLoginUrl("http://localhost:8888/login");
+        shiroFilterFactoryBean.setLoginUrl("http://localhost:9090/rbac/login");
         shiroFilterFactoryBean.setSuccessUrl("/sa/index");
         filterChainDefinitionMap.put("/sa/**", "authc");
-        filterChainDefinitionMap.put("/role/**", "authc");
+        filterChainDefinitionMap.put("/role/**", "authc,perms[admin:role]");
+        filterChainDefinitionMap.put("/user/**", "authc,perms[admin:user]");
         filterChainDefinitionMap.put("/**", "anon");
         shiroFilterFactoryBean
                 .setFilterChainDefinitionMap(filterChainDefinitionMap);
@@ -122,7 +123,7 @@ class MyRealm extends AuthorizingRealm{
             UserAuthDto userAuth = userService.getUserAuth(username);
             if(null == userAuth)
                 return null;
-            return new SimpleAuthenticationInfo(userAuth, userAuth.getPassword(), this.getClass().getName());
+            return new SimpleAuthenticationInfo(userAuth.getUsername(), userAuth.getPassword(), getName());
         }
         return null;
     }

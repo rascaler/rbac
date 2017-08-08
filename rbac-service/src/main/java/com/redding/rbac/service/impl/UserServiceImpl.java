@@ -138,8 +138,9 @@ public class UserServiceImpl implements UserService {
         role1.setCode("admin");
         role1.setName("超级管理员");
         roles.add(role1);
+        userAuth.setRoles(roles);
         // todo 获取权限
-        role1.setPrivileges(new ArrayList<String>(){{ add("1"); }});
+        role1.setPrivileges(new ArrayList<String>(){{ add("admin:role"); }});
         return userAuth;
     }
 }

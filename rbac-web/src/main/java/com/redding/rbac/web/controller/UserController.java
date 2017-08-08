@@ -95,17 +95,5 @@ public class UserController {
         userService.updateState(id, state, SessionUtils.getUserAuth().getEnterpriseId());
     }
 
-    /**
-     * @param username
-     * @param password
-     */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @OuterResponseBody
-    void login(@RequestParam String username, @RequestParam String password){
-        UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
-        Subject subject = SecurityUtils.getSubject();
-        subject.login(usernamePasswordToken);
-    }
-
 
 }

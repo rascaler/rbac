@@ -90,8 +90,9 @@ public class ShiroConfig implements EnvironmentAware{
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setSuccessUrl("/sa/index");
         if(!loginRequired) {
-            shiroFilterFactoryBean.getFilters().put("autoLogin", new AutoLoginFilter());
-            filterChainDefinitionMap.put("/*", "autoLogin");
+//            shiroFilterFactoryBean.getFilters().put("autoLogin", new AutoLoginFilter());
+//            filterChainDefinitionMap.put("/*", "autoLogin");
+            filterChainDefinitionMap.put("/**", "anon");
         }
         filterChainDefinitionMap.put("/role/**", "authc,perms[admin:role]");
         filterChainDefinitionMap.put("/user/**", "authc,perms[admin:user]");

@@ -2,13 +2,18 @@ package com.redding.rbac.web.config;
 
 import com.redding.rbac.commons.constant.BasicEcode;
 import com.redding.rbac.commons.exception.SPIException;
+import com.redding.rbac.commons.pojo.dto.auth.UserAuthDto;
 import com.redding.rbac.web.utils.shiro.MyRealm;
 import com.redding.rbac.web.utils.shiro.AutoLoginFilter;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+import org.apache.shiro.web.filter.authz.AuthorizationFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +26,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -83,7 +91,7 @@ public class ShiroConfig implements EnvironmentAware{
         shiroFilterFactoryBean.setSuccessUrl("/sa/index");
         if(!loginRequired) {
             shiroFilterFactoryBean.getFilters().put("autoLogin", new AutoLoginFilter());
-            filterChainDefinitionMap.put("/**", "autoLogin");
+            filterChainDefinitionMap.put("/*", "autoLogin");
         }
         filterChainDefinitionMap.put("/role/**", "authc,perms[admin:role]");
         filterChainDefinitionMap.put("/user/**", "authc,perms[admin:user]");
@@ -103,61 +111,3 @@ public class ShiroConfig implements EnvironmentAware{
         loginRequired = new Boolean(loginRequiredStr);
     }
 }
-
-//class MyRealm extends AuthorizingRealm{
-//
-//    @Autowired
-//    private UserService userService;
-//
-//    /**
-//     * 授权信息
-//     */
-//    @Override
-//    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-//        String username = (String)principalCollection.fromRealm(getName()).iterator().next();
-//        if( username != null ){
-//            UserAuthDto userAuth = userService.getUserAuth(username);
-//            if( null != userAuth && null != userAuth.getRoles() && userAuth.getRoles().size() > 0){
-//                SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//                // 权限
-//                userAuth.getRoles().forEach(r -> {
-//                    info.addRole(r.getCode());
-//                    info.addStringPermissions(r.getPrivileges());
-//                });
-//                return info;
-//            }
-//        }
-//        return null;
-//    }
-//
-//    /**
-//     * 认证信息
-//     */
-//    @Override
-//    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-//        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-//        String username = token.getUsername();
-//        if(StringUtils.isNotEmpty(username)){
-//            UserAuthDto userAuth = userService.getUserAuth(username);
-//            if(null == userAuth || !userAuth.getPassword().equals(new String(token.getPassword())))
-//                throw new SPIException(BasicEcode.USER_ERR_LOGIN);
-//            SecurityUtils.getSubject().getSession().setAttribute("userAuth", userAuth);
-//            return new SimpleAuthenticationInfo(userAuth.getUsername(), userAuth.getPassword(), getName());
-//        }
-//        return null;
-//    }
-//
-//}
-
-//class AutoLoginFilter extends AuthorizationFilter {
-//    @Override
-//    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
-//        Subject subject = getSubject(servletRequest,servletResponse);
-//        UserAuthDto user = (UserAuthDto) subject.getSession().getAttribute("userAuth");
-//        if(null == user) {
-//            UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken("admin","123");
-//            subject.login(usernamePasswordToken);
-//        }
-//        return true;
-//    }
-//}

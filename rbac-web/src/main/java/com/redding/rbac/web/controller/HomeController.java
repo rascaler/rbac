@@ -60,7 +60,7 @@ public class HomeController {
 
     @RequestMapping(value = "/autoLogin", method = RequestMethod.GET)
     @OuterResponseBody
-    void autoLogin(){
+    void autoLogin() {
         if(!loginEnable){
             UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken("admin","123");
             Subject subject = SecurityUtils.getSubject();

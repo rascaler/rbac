@@ -139,7 +139,7 @@
                     jdbc:mysql://127.0.0.1:3306/rbac?allowMultiQueries=true&amp;tinyInt1isBit=false&amp;zeroDateTimeBehavior=convertToNull
                 </mysql.url>
                 <cors.enable>true</cors.enable>
-                <login.required>false</login.required>
+                <login.required>true</login.required>
                 <login.username>admin</login.username>
             </properties>
         </profile>

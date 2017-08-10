@@ -14,11 +14,11 @@ import java.util.UUID;
  */
 public class Log4jAspect {
 
+    private final static Logger logger = LoggerFactory.getLogger(Log4jAspect.class);
 
     public Object info(ProceedingJoinPoint jp) {
 
         long startTime = System.currentTimeMillis();
-        Logger logger = LoggerFactory.getLogger(jp.getTarget().getClass());
         Thread.currentThread().setName(new StringBuffer().append(Thread.currentThread().getName())
                                                          .append(" ")
                                                          .append(UUID.randomUUID()).toString());

@@ -37,4 +37,8 @@ public interface RoleManager extends BaseManager<Role> {
      * @return
      */
     int save(Role role, List<RolePrivilege> rolePrivileges);
+
+    List<Role> getUserRoles(Integer userId);
+
+    int deleteRole(Integer id);
 }

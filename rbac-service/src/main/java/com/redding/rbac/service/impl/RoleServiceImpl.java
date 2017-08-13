@@ -12,10 +12,7 @@ import com.redding.rbac.commons.pojo.query.RoleQuery;
 import com.redding.rbac.commons.utils.BeanMapper;
 import com.redding.rbac.commons.utils.PageParams;
 import com.redding.rbac.infrastructure.domain.*;
-import com.redding.rbac.infrastructure.manager.OrganizationRoleManager;
-import com.redding.rbac.infrastructure.manager.OrganizationUserManager;
-import com.redding.rbac.infrastructure.manager.RoleManager;
-import com.redding.rbac.infrastructure.manager.UserRoleManager;
+import com.redding.rbac.infrastructure.manager.*;
 import com.redding.rbac.service.RoleService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -42,6 +39,9 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     private UserRoleManager userRoleManager;
 
+    @Autowired
+    private RolePrivilegeManager rolePrivilegeManager;
+
     @Override
     public List<RoleDto> getAll(Integer enterpriseId) {
         return BeanMapper.mapList(roleManager.getAll(enterpriseId), RoleDto.class);
@@ -64,45 +64,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<RoleDto> getUserRoles(Integer userId, Integer enterpriseId) {
-        //先查询用户当前组织所拥有的角色
-        Set<Integer> roleIds = new HashSet<Integer>();
-        OrganizationUser orgUserQuery = new OrganizationUser();
-        orgUserQuery.setUserId(userId);
-        organizationUserManager.selectList(orgUserQuery);
-        List<OrganizationUser> orgUsers = organizationUserManager.selectList(orgUserQuery);
-        if(null != orgUsers && orgUsers.size() > 0){
-            Example orgRoleExample = new Example(OrganizationRole.class);
-            orgRoleExample.createCriteria().andIn("organizationId", orgUsers.stream().map(OrganizationUser::getOrganizationId).collect(Collectors.toList()));
-            List<OrganizationRole> orgRoles = organizationRoleManager.selectByExample(orgRoleExample);
-            if(null != orgRoles && orgRoles.size() > 0){
-                roleIds.addAll(orgRoles.stream().map(OrganizationRole::getRoleId).collect(Collectors.toList()));
-            }
-        }
-        //查询用户当前所分配的角色
-        UserRole userRoleQuery = new UserRole();
-        userRoleQuery.setUserId(userId);
-        List<UserRole> userRoles = userRoleManager.selectList(userRoleQuery);
-        if(null != userRoles && userRoles.size() > 0)
-            roleIds.addAll(userRoles.stream().map(UserRole::getRoleId).collect(Collectors.toList()));
-        if(null == roleIds || roleIds.size() == 0)
-            return null;
-        Example roleExample = new Example(Role.class);
-        roleExample.createCriteria().andIn("id", roleIds).andEqualTo("state", DefaultStateEnum.ENABLED.getValue());
-        List<Role> roles = roleManager.selectByExample(roleExample);
-        if(null == roles || roles.size() == 0)
-            throw new SPIException(BasicEcode.DATA_ERROR);
-        for(Role r : roles){
-            if(StringUtils.isNotEmpty(r.getPidList())){
-                String[] pidList = r.getPidList().split(",");
-                for(String pid: pidList){
-                    roleIds.add(Integer.parseInt(pid));
-                }
-            }
-            roleIds.add(r.getId());
-        }
-        roleExample.clear();
-        roleExample.createCriteria().andIn("id", roleIds);
-        return BeanMapper.mapList(roleManager.selectByExample(roleExample), RoleDto.class);
+        return BeanMapper.mapList(roleManager.getUserRoles(userId), RoleDto.class);
     }
 
     @Override
@@ -136,7 +98,7 @@ public class RoleServiceImpl implements RoleService {
              logger.error("角色id={}不存在", roleEditDto.getParentId());
              throw new SPIException(RbacEcode.ROLE_NOT_EXISTS);
           }
-          role.setPidList( StringUtils.isNotEmpty(role.getPidList()) ? role.getPidList() + "," + role.getId() : role.getId().toString());
+          role.setPidList( StringUtils.isNotEmpty(parent.getPidList()) ? parent.getPidList() + "," + parent.getId() : parent.getId().toString());
         }
         return roleManager.save(role, rolePrivileges);
     }
@@ -158,8 +120,47 @@ public class RoleServiceImpl implements RoleService {
                 logger.error("角色id={}不存在", roleEditDto.getParentId());
                 throw new SPIException(RbacEcode.ROLE_NOT_EXISTS);
             }
-            role.setPidList( StringUtils.isNotEmpty(role.getPidList()) ? parent.getPidList() + "," + parent.getId() : parent.getId().toString());
+            role.setPidList( StringUtils.isNotEmpty(parent.getPidList()) ? parent.getPidList() + "," + parent.getId() : parent.getId().toString());
         }
         return roleManager.update(role, rolePrivileges);
+    }
+
+    @Override
+    public void delete(Integer id) throws SPIException {
+        // 查询角色是否已在使用
+        OrganizationRole orgRoleQuery = new OrganizationRole();
+        orgRoleQuery.setRoleId(id);
+        OrganizationRole orgRole = organizationRoleManager.selectFirst(orgRoleQuery);
+        if(null != orgRole)
+            throw new SPIException(RbacEcode.ROLE_IN_USE);
+        UserRole userRoleQuery = new UserRole();
+        userRoleQuery.setRoleId(id);
+        UserRole userRole = userRoleManager.selectFirst(userRoleQuery);
+        if(null != userRole)
+            throw new SPIException(RbacEcode.ROLE_IN_USE);
+        roleManager.deleteRole(id);
+    }
+
+    @Override
+    public void updateState(RoleDto role) {
+        roleManager.updateSelective(BeanMapper.map(role, Role.class));
+    }
+
+    @Override
+    public RoleEditDto getEditDetail(Integer id, Integer enterpriseId) throws SPIException{
+        Role query = new Role();
+        query.setId(id);
+        query.setEnterpriseId(enterpriseId);
+        Role role = roleManager.selectOne(query);
+        if(null == role)
+            throw new SPIException(RbacEcode.ROLE_NOT_EXISTS);
+        RoleEditDto editDto = BeanMapper.map(role, RoleEditDto.class);
+        RolePrivilege rolePrivQuery = new RolePrivilege();
+        rolePrivQuery.setRoleId(id);
+        List<RolePrivilege> rolePrivileges = rolePrivilegeManager.selectList(rolePrivQuery);
+        if(null == rolePrivileges)
+            throw new SPIException(RbacEcode.PRIVILEGE_NOT_EXISTS);
+        editDto.setPrivilegeIds(rolePrivileges.stream().map(RolePrivilege::getPrivilegeId).collect(Collectors.toList()));
+        return editDto;
     }
 }

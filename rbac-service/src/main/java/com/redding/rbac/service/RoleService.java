@@ -2,6 +2,7 @@ package com.redding.rbac.service;
 
 
 import com.github.pagehelper.PageInfo;
+import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.pojo.dto.RoleDto;
 import com.redding.rbac.commons.pojo.dto.RoleEditDto;
 import com.redding.rbac.commons.pojo.query.RoleQuery;
@@ -52,4 +53,24 @@ public interface RoleService {
      */
     int update(RoleEditDto roleEditDto);
 
+    /**
+     * 删除角色，只能删除未使用的角色
+     * @param id
+     * @throws SPIException
+     */
+    void delete(Integer id) throws SPIException;
+
+    /**
+     * 更新角色状态
+     * @param role
+     */
+    void updateState(RoleDto role);
+
+    /**
+     * 查询编辑详情
+     * @param id
+     * @param enterpriseId
+     * @return
+     */
+    RoleEditDto getEditDetail(Integer id, Integer enterpriseId) throws SPIException;
 }

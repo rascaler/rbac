@@ -13,8 +13,7 @@ import com.redding.rbac.web.utils.annotation.OuterResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -52,17 +51,39 @@ public class RoleController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @OuterResponseBody
-    void save(@Validated(value = {Add.class}) RoleEditDto roleEditDto) {
+    void save(@Validated(value = {Add.class}) @RequestBody RoleEditDto roleEditDto) {
         UserAuthDto userAuthDto = SessionUtils.getUserAuth();
-        roleEditDto.setEnterpriseId(roleEditDto.getEnterpriseId());
+        roleEditDto.setEnterpriseId(userAuthDto.getEnterpriseId());
         roleService.save(roleEditDto);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @OuterResponseBody
-    void update(@Validated(value = {Update.class}) RoleEditDto roleEditDto) {
+    void update(@Validated(value = {Update.class}) @RequestBody RoleEditDto roleEditDto) {
         UserAuthDto userAuthDto = SessionUtils.getUserAuth();
         roleEditDto.setEnterpriseId(userAuthDto.getEnterpriseId());
         roleService.update(roleEditDto);
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @OuterResponseBody
+    void delete(@RequestParam Integer id) {
+        roleService.delete(id);
+    }
+
+    @RequestMapping(value = "/updateState", method = RequestMethod.POST)
+    @OuterResponseBody
+    void upateState(@RequestParam Integer id,@RequestParam Integer state) {
+        RoleDto role = new RoleDto();
+        role.setState(state);
+        role.setEnterpriseId(SessionUtils.getUserAuth().getEnterpriseId());
+        role.setId(id);
+        roleService.updateState(role);
+    }
+
+    @RequestMapping(value = "/editDetail", method = RequestMethod.GET)
+    @OuterResponseBody
+    RoleEditDto editDetail(@RequestParam Integer id) {
+        return roleService.getEditDetail(id, SessionUtils.getUserAuth().getEnterpriseId());
     }
 }

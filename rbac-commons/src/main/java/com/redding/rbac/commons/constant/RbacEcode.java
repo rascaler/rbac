@@ -35,10 +35,20 @@ public class RbacEcode implements Serializable {
     public final static String ORGANIZATION_HAS_CHILDREN = "100010004";
 
    ///////////////////////////// user  10002
-   public final static String USER_NOT_EXISTS = "100010001";
+    /** 用户不存在 */
+   public final static String USER_NOT_EXISTS = "100020001";
 
     ///////////////////////////// role  10003
+    /** 角色不存在 */
     public final static String ROLE_NOT_EXISTS = "100030001";
+
+    /** 角色在使用中 */
+    public final static String ROLE_IN_USE = "100030002";
+
+    ///////////////////////////// privilege  10004
+    /** 权限不存在 */
+    public final static String PRIVILEGE_NOT_EXISTS = "100040001";
+
 
 
 }

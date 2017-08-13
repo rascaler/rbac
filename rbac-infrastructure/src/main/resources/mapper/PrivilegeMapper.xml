@@ -6,8 +6,20 @@
       WARNING - @mbggenerated
     -->
     <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="createdDate" property="createdDate" jdbcType="TIMESTAMP" />
     <result column="updatedDate" property="updatedDate" jdbcType="TIMESTAMP" />
     <result column="enterpriseId" property="enterpriseId" jdbcType="INTEGER" />
   </resultMap>
+
+  <select id="selectPrivilegesByRoleIds" resultType="Privilege">
+     SELECT DISTINCT p.id,p.name,p.createdDate,p.updatedDate,p.enterpriseId
+     FROM tb_privilege p,tb_role_privilege rp
+     WHERE p.id = rp.privilegeId
+     AND rp.roleId IN (
+       <foreach collection="roleIds" item="roleId" separator=",">
+         #{roleId}
+       </foreach>
+     );
+  </select>
 </mapper>

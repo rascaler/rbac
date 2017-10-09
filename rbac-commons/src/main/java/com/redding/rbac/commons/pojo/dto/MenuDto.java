@@ -1,8 +1,13 @@
 package com.redding.rbac.commons.pojo.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Date;
 
+@Getter
+@Setter
 public class MenuDto implements Serializable {
     private Integer id;
 
@@ -14,73 +19,9 @@ public class MenuDto implements Serializable {
 
     private Integer sequence;
 
-    /**
-     * @return id
-     */
-    public Integer getId() {
-        return id;
-    }
+    private Integer appId;
 
-    /**
-     * @param id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private String url;
 
-    /**
-     * @return createdDate
-     */
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    /**
-     * @param createdDate
-     */
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    /**
-     * @return updatedDate
-     */
-    public Date getUpdatedDate() {
-        return updatedDate;
-    }
-
-    /**
-     * @param updatedDate
-     */
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    /**
-     * @return enterpriseId
-     */
-    public Integer getEnterpriseId() {
-        return enterpriseId;
-    }
-
-    /**
-     * @param enterpriseId
-     */
-    public void setEnterpriseId(Integer enterpriseId) {
-        this.enterpriseId = enterpriseId;
-    }
-
-    /**
-     * @return sequence
-     */
-    public Integer getSequence() {
-        return sequence;
-    }
-
-    /**
-     * @param sequence
-     */
-    public void setSequence(Integer sequence) {
-        this.sequence = sequence;
-    }
+    private String name;
 }

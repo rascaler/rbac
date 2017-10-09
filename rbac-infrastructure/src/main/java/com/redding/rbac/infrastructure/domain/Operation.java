@@ -1,8 +1,13 @@
 package com.redding.rbac.infrastructure.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Table(name = "tb_operation")
 public class Operation {
     @Id
@@ -16,62 +21,15 @@ public class Operation {
     @Column(name = "updatedDate")
     private Date updatedDate;
 
-    @Column(name = "enterpriseId")
-    private Integer enterpriseId;
+//    @Column(name = "enterpriseId")
+//    private Integer enterpriseId;
+    @Column(name = "menuId")
+    private Integer menuId;
 
-    /**
-     * @return id
-     */
-    public Integer getId() {
-        return id;
-    }
+    @Column(name = "appId")
+    private Integer appId;
 
-    /**
-     * @param id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @Column(name = "name")
+    private String name;
 
-    /**
-     * @return createdDate
-     */
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    /**
-     * @param createdDate
-     */
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    /**
-     * @return updatedDate
-     */
-    public Date getUpdatedDate() {
-        return updatedDate;
-    }
-
-    /**
-     * @param updatedDate
-     */
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    /**
-     * @return enterpriseId
-     */
-    public Integer getEnterpriseId() {
-        return enterpriseId;
-    }
-
-    /**
-     * @param enterpriseId
-     */
-    public void setEnterpriseId(Integer enterpriseId) {
-        this.enterpriseId = enterpriseId;
-    }
 }

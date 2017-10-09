@@ -10,4 +10,11 @@
     <result column="updatedDate" property="updatedDate" jdbcType="TIMESTAMP" />
     <result column="enterpriseId" property="enterpriseId" jdbcType="INTEGER" />
   </resultMap>
+
+  <select id="selectAppOperations" parameterType="java.lang.Integer" resultType="Operation">
+    SELECT *
+    FROM tb_app a,tb_operation o,tb_menu m
+    WHERE a.id = m.appId
+    AND m.
+  </select>
 </mapper>

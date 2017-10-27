@@ -1,6 +1,10 @@
 package com.redding.rbac.web.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.redding.rbac.commons.pojo.dto.MenuDto;
 import com.redding.rbac.commons.pojo.dto.MenuNodeDto;
+import com.redding.rbac.commons.pojo.query.MenuQuery;
+import com.redding.rbac.commons.utils.PageParams;
 import com.redding.rbac.service.MenuService;
 import com.redding.rbac.web.utils.annotation.OuterResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +27,16 @@ public class MenuController {
     @Autowired
     private MenuService menuService;
 
-    @RequestMapping(value = "/getAppMenus", method = RequestMethod.GET)
+    @RequestMapping(value = "/pageMenus", method = RequestMethod.GET)
     @OuterResponseBody
-    List<MenuNodeDto> getAppMenus(@RequestParam Integer appId) {
-        return menuService.getAppMenus(appId);
+    PageInfo<MenuDto> pageMenus(MenuQuery query, PageParams pageParams) {
+        return menuService.pageMenus(query, pageParams);
+    }
+
+    @RequestMapping(value = "/getMenuTree", method = RequestMethod.GET)
+    @OuterResponseBody
+    List<MenuNodeDto> getMenuTree(@RequestParam Integer appId) {
+        return menuService.getMenuTree(appId, true);
     }
 
 

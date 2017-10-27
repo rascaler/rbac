@@ -24,4 +24,12 @@ public class MenuDto implements Serializable {
     private String url;
 
     private String name;
+
+    private Integer type;
+
+    private Integer parentId;
+
+    private String description;
+
+    private String code;
 }

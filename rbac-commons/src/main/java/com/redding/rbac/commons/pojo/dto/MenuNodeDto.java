@@ -21,16 +21,9 @@ public class MenuNodeDto implements Serializable {
 
     private String name;
 
-    private boolean isMenu;
+    private Integer type;
 
-    private List<MenuNodeDto> nodes;
+    private Integer parentId;
 
-
-    public boolean getIsMenu() {
-        return isMenu;
-    }
-
-    public void setIsMenu(boolean isMenu) {
-        isMenu = isMenu;
-    }
+    private List<MenuNodeDto> children;
 }

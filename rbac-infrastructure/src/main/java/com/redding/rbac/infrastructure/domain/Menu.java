@@ -35,4 +35,16 @@ public class Menu {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "type")
+    private Integer type;
+
+    @Column(name = "parentId")
+    private Integer parentId;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "code")
+    private String code;
 }

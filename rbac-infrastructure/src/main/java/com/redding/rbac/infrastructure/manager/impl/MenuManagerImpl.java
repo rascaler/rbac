@@ -3,8 +3,10 @@ package com.redding.rbac.infrastructure.manager.impl;
 import com.redding.rbac.commons.pojo.dto.MenuNodeDto;
 import com.redding.rbac.commons.utils.BeanMapper;
 import com.redding.rbac.infrastructure.domain.Menu;
+import com.redding.rbac.infrastructure.domain.MenuPrivilege;
 import com.redding.rbac.infrastructure.manager.MenuManager;
 import com.redding.rbac.infrastructure.mapper.MenuMapper;
+import com.redding.rbac.infrastructure.mapper.MenuPrivilegeMapper;
 import com.redding.rbac.infrastructure.utils.DefaultManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class MenuManagerImpl extends DefaultManager<Menu> implements MenuManager
 
     @Autowired
     private MenuMapper menuMapper;
+
+    @Autowired
+    private MenuPrivilegeMapper menuPrivilegeMapper;
 
     @Override
     public List<MenuNodeDto> getMenuTree(Integer appId, boolean withOperation) {
@@ -34,6 +39,15 @@ public class MenuManagerImpl extends DefaultManager<Menu> implements MenuManager
             return null;
         roots.forEach(r -> recurMenu(r, menus));
         return roots;
+    }
+
+    @Override
+    public int removeMenu(Integer id) {
+        MenuPrivilege query = new MenuPrivilege();
+        query.setMenuId(id);
+        menuPrivilegeMapper.delete(query);
+        int result = menuMapper.deleteByPrimaryKey(id);
+        return result;
     }
 
     private void recurMenu(MenuNodeDto parent, List<Menu> all){

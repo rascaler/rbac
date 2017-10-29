@@ -2,8 +2,10 @@ package com.redding.rbac.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.redding.rbac.commons.constant.BasicEcode;
 import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.pojo.dto.MenuDto;
+import com.redding.rbac.commons.pojo.dto.MenuEditDto;
 import com.redding.rbac.commons.pojo.dto.MenuNodeDto;
 import com.redding.rbac.commons.pojo.query.MenuQuery;
 import com.redding.rbac.commons.utils.BeanMapper;
@@ -44,5 +46,20 @@ public class MenuServiceImpl implements MenuService {
         PageInfo pageInfo = new PageInfo(menus);
         pageInfo.setList(BeanMapper.mapList(menus, MenuDto.class));
         return pageInfo;
+    }
+
+    @Override
+    public MenuEditDto save(MenuEditDto menuEditDto) {
+        Menu menu = BeanMapper.map(menuEditDto, Menu.class);
+        int result = menuManager.insertSelective(menu);
+        if(result == 0)
+            throw new SPIException(BasicEcode.FAILED);
+        return BeanMapper.map(menu, MenuEditDto.class);
+    }
+
+    @Override
+    public void removeMenu(Integer id) {
+        if(menuManager.removeMenu(id) <= 0)
+            throw new SPIException(BasicEcode.FAILED);
     }
 }

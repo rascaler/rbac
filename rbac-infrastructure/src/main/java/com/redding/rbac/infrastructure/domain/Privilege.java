@@ -18,6 +18,9 @@ public class Privilege {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "code")
+    private String code;
+
     @Column(name = "createdDate")
     private Date createdDate;
 
@@ -26,4 +29,7 @@ public class Privilege {
 
     @Column(name = "enterpriseId")
     private Integer enterpriseId;
+
+    @Column(name = "appId")
+    private Integer appId;
 }

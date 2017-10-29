@@ -8,12 +8,8 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class PrivilegeDto implements Serializable {
+public class MenuEditDto implements Serializable {
     private Integer id;
-
-    private String name;
-
-    private String code;
 
     private Date createdDate;
 
@@ -21,5 +17,19 @@ public class PrivilegeDto implements Serializable {
 
     private Integer enterpriseId;
 
+    private Integer sequence;
+
     private Integer appId;
+
+    private String url;
+
+    private String name;
+
+    private Integer type;
+
+    private Integer parentId;
+
+    private String description;
+
+    private String code;
 }

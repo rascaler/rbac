@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface MenuManager extends BaseManager<Menu> {
     List<MenuNodeDto> getMenuTree(Integer appId, boolean withOperation);
+
+    int removeMenu(Integer id);
 }

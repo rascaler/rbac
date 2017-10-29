@@ -2,6 +2,7 @@ package com.redding.rbac.web.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.redding.rbac.commons.pojo.dto.MenuDto;
+import com.redding.rbac.commons.pojo.dto.MenuEditDto;
 import com.redding.rbac.commons.pojo.dto.MenuNodeDto;
 import com.redding.rbac.commons.pojo.query.MenuQuery;
 import com.redding.rbac.commons.utils.PageParams;
@@ -9,6 +10,7 @@ import com.redding.rbac.service.MenuService;
 import com.redding.rbac.web.utils.annotation.OuterResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +39,24 @@ public class MenuController {
     @OuterResponseBody
     List<MenuNodeDto> getMenuTree(@RequestParam Integer appId) {
         return menuService.getMenuTree(appId, true);
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @OuterResponseBody
+    MenuEditDto save(@Validated MenuEditDto menuEditDto) {
+        return menuService.save(menuEditDto);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @OuterResponseBody
+    MenuEditDto update(@Validated MenuEditDto menuEditDto) {
+        return null;
+    }
+
+    @RequestMapping(value = "/remove", method = RequestMethod.POST)
+    @OuterResponseBody
+    void remove(@RequestParam Integer id) {
+        menuService.removeMenu(id);
     }
 
 

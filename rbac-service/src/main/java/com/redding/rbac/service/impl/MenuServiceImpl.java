@@ -34,7 +34,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public PageInfo<MenuDto> pageMenus(MenuQuery query, PageParams pageParams) {
+    public PageInfo<MenuDto> pageMenus(MenuQuery query, PageParams pageParams) throws SPIException {
         Example example = new Example(Menu.class);
         Example.Criteria criteria = example.createCriteria();
         if(StringUtils.isNoneEmpty(query.getName()))
@@ -49,17 +49,23 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public MenuEditDto save(MenuEditDto menuEditDto) {
+    public MenuEditDto save(MenuEditDto menuEditDto) throws SPIException {
         Menu menu = BeanMapper.map(menuEditDto, Menu.class);
         int result = menuManager.insertSelective(menu);
         if(result == 0)
-            throw new SPIException(BasicEcode.FAILED);
+            throw new SPIException(BasicEcode.SAVE_ERROR);
         return BeanMapper.map(menu, MenuEditDto.class);
     }
 
     @Override
-    public void removeMenu(Integer id) {
+    public void removeMenu(Integer id) throws SPIException {
         if(menuManager.removeMenu(id) <= 0)
-            throw new SPIException(BasicEcode.FAILED);
+            throw new SPIException(BasicEcode.DELETE_ERROR);
+    }
+
+    @Override
+    public MenuEditDto getEditDetail(Integer id) throws SPIException {
+        Menu menu = menuManager.selectByKey(id);
+        return BeanMapper.map(menu, MenuEditDto.class);
     }
 }

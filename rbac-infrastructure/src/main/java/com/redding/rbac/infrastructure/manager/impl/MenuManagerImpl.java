@@ -59,7 +59,7 @@ public class MenuManagerImpl extends DefaultManager<Menu> implements MenuManager
         List<MenuNodeDto> nodes = new ArrayList<MenuNodeDto>();
         children.forEach(c ->{
             MenuNodeDto node = BeanMapper.map(c, MenuNodeDto.class);
-            if(c.getType() == 1){
+            if(c.getType() == 0){
                 recurMenu(node, all);
             }
             nodes.add(node);

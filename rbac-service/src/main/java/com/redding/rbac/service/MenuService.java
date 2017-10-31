@@ -14,9 +14,12 @@ import java.util.List;
 public interface MenuService {
     List<MenuNodeDto> getMenuTree(Integer appId, boolean withOperation) throws SPIException;
 
-    PageInfo<MenuDto> pageMenus(MenuQuery query, PageParams pageParams);
+    PageInfo<MenuDto> pageMenus(MenuQuery query, PageParams pageParams) throws SPIException;
 
-    MenuEditDto save(MenuEditDto menuEditDto);
+    MenuEditDto save(MenuEditDto menuEditDto) throws SPIException;
 
-    void removeMenu(Integer id);
+    void removeMenu(Integer id) throws SPIException;
+
+    MenuEditDto getEditDetail(Integer id) throws SPIException;
+
 }

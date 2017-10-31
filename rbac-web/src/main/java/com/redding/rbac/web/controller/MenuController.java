@@ -59,6 +59,15 @@ public class MenuController {
         menuService.removeMenu(id);
     }
 
+    @RequestMapping(value = "/getEditDetail", method = RequestMethod.GET)
+    @OuterResponseBody
+    MenuEditDto getEditDetail(@RequestParam Integer id) {
+        return menuService.getEditDetail(id);
+    }
+
+
+
+
 
 
 }

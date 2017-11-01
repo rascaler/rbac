@@ -6,6 +6,8 @@ import com.redding.rbac.commons.pojo.dto.MenuEditDto;
 import com.redding.rbac.commons.pojo.dto.MenuNodeDto;
 import com.redding.rbac.commons.pojo.query.MenuQuery;
 import com.redding.rbac.commons.utils.PageParams;
+import com.redding.rbac.commons.utils.validation.Add;
+import com.redding.rbac.commons.utils.validation.Update;
 import com.redding.rbac.service.MenuService;
 import com.redding.rbac.web.utils.annotation.OuterResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,14 +45,14 @@ public class MenuController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @OuterResponseBody
-    MenuEditDto save(@Validated MenuEditDto menuEditDto) {
+    MenuEditDto save(@Validated(value = {Add.class}) MenuEditDto menuEditDto) {
         return menuService.save(menuEditDto);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     @OuterResponseBody
-    MenuEditDto update(@Validated MenuEditDto menuEditDto) {
-        return null;
+    MenuEditDto update(@Validated(value = {Update.class}) MenuEditDto menuEditDto) {
+        return menuService.update(menuEditDto);
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)

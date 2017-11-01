@@ -32,4 +32,7 @@ public class Privilege {
 
     @Column(name = "appId")
     private Integer appId;
+
+    @Column(name = "description")
+    private String description;
 }

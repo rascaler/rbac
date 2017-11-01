@@ -13,11 +13,13 @@ import java.util.List;
 public interface PrivilegeService {
     List<PrivilegeDto> getPrivileges(Integer userId) throws SPIException;
 
-    PageInfo<PrivilegeDto> pagePrivileges(PageParams pageParams, PrivilegeQuery query);
+    PageInfo<PrivilegeDto> pagePrivileges(PageParams pageParams, PrivilegeQuery query) throws SPIException;
 
-    int save(PrivilegeEditDto privilegeEditDto);
+    int save(PrivilegeEditDto privilegeEditDto) throws SPIException;
 
-    int update(PrivilegeEditDto privilegeEditDto);
+    int update(PrivilegeEditDto privilegeEditDto) throws SPIException;
 
-    int delete(Integer id);
+    int delete(Integer id) throws SPIException;
+
+    PrivilegeEditDto getEditDetail(Integer id) throws SPIException;
 }

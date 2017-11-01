@@ -68,4 +68,13 @@ public class MenuServiceImpl implements MenuService {
         Menu menu = menuManager.selectByKey(id);
         return BeanMapper.map(menu, MenuEditDto.class);
     }
+
+    @Override
+    public MenuEditDto update(MenuEditDto menuEditDto) throws SPIException {
+        Menu menu = BeanMapper.map(menuEditDto, Menu.class);
+        int result = menuManager.updateSelective(menu);
+        if(result == 0)
+            throw new SPIException(BasicEcode.UPDATE_ERROR);
+        return menuEditDto;
+    }
 }

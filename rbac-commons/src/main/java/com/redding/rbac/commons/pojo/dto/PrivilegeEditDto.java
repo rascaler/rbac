@@ -33,5 +33,7 @@ public class PrivilegeEditDto implements Serializable {
     @NotNull(groups = {Add.class, Update.class})
     private Integer appId;
 
+    private String description;
+
     private List<Integer> menuIds;
 }

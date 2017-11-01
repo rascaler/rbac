@@ -22,4 +22,5 @@ public interface MenuService {
 
     MenuEditDto getEditDetail(Integer id) throws SPIException;
 
+    MenuEditDto update(MenuEditDto menuEditDto) throws SPIException;
 }

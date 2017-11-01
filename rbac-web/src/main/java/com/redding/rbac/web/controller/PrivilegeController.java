@@ -76,4 +76,11 @@ public class PrivilegeController {
     void delete(@RequestParam Integer id) {
         privilegeService.delete(id);
     }
+
+    @RequestMapping(value = "/getEditDetail", method = RequestMethod.GET)
+    @OuterResponseBody
+    PrivilegeEditDto getEditDetail(@RequestParam Integer id) {
+        return privilegeService.getEditDetail(id);
+    }
+
 }

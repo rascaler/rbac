@@ -13,6 +13,7 @@ import com.redding.rbac.commons.utils.PageParams;
 import com.redding.rbac.infrastructure.domain.MenuPrivilege;
 import com.redding.rbac.infrastructure.domain.Privilege;
 import com.redding.rbac.infrastructure.domain.Role;
+import com.redding.rbac.infrastructure.manager.MenuPrivilegeManager;
 import com.redding.rbac.infrastructure.manager.PrivilegeManager;
 import com.redding.rbac.infrastructure.manager.RoleManager;
 import com.redding.rbac.service.PrivilegeService;
@@ -33,6 +34,9 @@ public class PrivilegeServiceImpl implements PrivilegeService {
 
     @Autowired
     private PrivilegeManager privilegeManager;
+
+    @Autowired
+    private MenuPrivilegeManager menuPrivilegeManager;
     @Override
     public List<PrivilegeDto> getPrivileges(Integer userId) throws SPIException {
         // 获取当前用户的所有角色
@@ -95,6 +99,21 @@ public class PrivilegeServiceImpl implements PrivilegeService {
     @Override
     public int delete(Integer id) {
         return privilegeManager.deletePrivilege(id);
+    }
+
+    @Override
+    public PrivilegeEditDto getEditDetail(Integer id) throws SPIException {
+        Privilege privilege = privilegeManager.selectByKey(id);
+        PrivilegeEditDto privilegeEdit = BeanMapper.map(privilege, PrivilegeEditDto.class);
+        // 菜单
+        MenuPrivilege query = new MenuPrivilege();
+        query.setPrivilegeId(id);
+        List<MenuPrivilege> menuPrivs = menuPrivilegeManager.selectList(query);
+        if(null != menuPrivs && menuPrivs.size() > 0)
+            privilegeEdit.setMenuIds(menuPrivs.stream()
+                                                .map(MenuPrivilege::getMenuId)
+                                                .collect(Collectors.toList()) );
+        return privilegeEdit;
     }
 
 }

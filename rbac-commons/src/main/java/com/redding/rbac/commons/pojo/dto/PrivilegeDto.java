@@ -22,4 +22,6 @@ public class PrivilegeDto implements Serializable {
     private Integer enterpriseId;
 
     private Integer appId;
+
+    private String description;
 }

@@ -36,4 +36,6 @@ public class PrivilegeEditDto implements Serializable {
     private String description;
 
     private List<Integer> menuIds;
+
+    private List<Integer> relaMenuIds;
 }

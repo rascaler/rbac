@@ -1,7 +1,12 @@
 package com.redding.rbac.infrastructure.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Table(name = "tb_menu_privilege")
 public class MenuPrivilege {
     @Id
@@ -15,45 +20,6 @@ public class MenuPrivilege {
     @Column(name = "privilegeId")
     private Integer privilegeId;
 
-    /**
-     * @return id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * @return menuId
-     */
-    public Integer getMenuId() {
-        return menuId;
-    }
-
-    /**
-     * @param menuId
-     */
-    public void setMenuId(Integer menuId) {
-        this.menuId = menuId;
-    }
-
-    /**
-     * @return privilegeId
-     */
-    public Integer getPrivilegeId() {
-        return privilegeId;
-    }
-
-    /**
-     * @param privilegeId
-     */
-    public void setPrivilegeId(Integer privilegeId) {
-        this.privilegeId = privilegeId;
-    }
+    @Column(name = "checkState")
+    private Integer checkState;
 }

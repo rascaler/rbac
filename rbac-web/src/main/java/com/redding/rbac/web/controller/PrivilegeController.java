@@ -55,20 +55,20 @@ public class PrivilegeController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @OuterResponseBody
     void save(@RequestBody @Validated(value = {Add.class}) PrivilegeEditDto privilegeEditDto) {
-        privilegeEditDto.setEnterpriseId(SessionUtils.getUserAuth().getEnterpriseId());
-        if(null == privilegeEditDto.getMenuIds() || privilegeEditDto.getMenuIds().size() == 0)
-            throw new SPIException(BasicEcode.FAILED); //todo
-        privilegeService.save(privilegeEditDto);
+//        privilegeEditDto.setEnterpriseId(SessionUtils.getUserAuth().getEnterpriseId());
+//        if(null == privilegeEditDto.getMenuIds() || privilegeEditDto.getMenuIds().size() == 0)
+//            throw new SPIException(BasicEcode.FAILED); //todo
+//        privilegeService.save(privilegeEditDto);
     }
 
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @OuterResponseBody
     void update(@RequestBody @Validated(value = {Update.class}) PrivilegeEditDto privilegeEditDto) {
-        privilegeEditDto.setEnterpriseId(SessionUtils.getUserAuth().getEnterpriseId());
-        if(null == privilegeEditDto.getMenuIds() || privilegeEditDto.getMenuIds().size() == 0)
-            throw new SPIException(BasicEcode.FAILED); //todo
-        privilegeService.update(privilegeEditDto);
+//        privilegeEditDto.setEnterpriseId(SessionUtils.getUserAuth().getEnterpriseId());
+//        if(null == privilegeEditDto.getMenuIds() || privilegeEditDto.getMenuIds().size() == 0)
+//            throw new SPIException(BasicEcode.FAILED); //todo
+//        privilegeService.update(privilegeEditDto);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -82,5 +82,4 @@ public class PrivilegeController {
     PrivilegeEditDto getEditDetail(@RequestParam Integer id) {
         return privilegeService.getEditDetail(id);
     }
-
 }

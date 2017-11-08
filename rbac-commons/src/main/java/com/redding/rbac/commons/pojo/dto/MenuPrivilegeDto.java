@@ -9,6 +9,8 @@ public class MenuPrivilegeDto implements Serializable {
 
     private Integer privilegeId;
 
+    private Integer checkState;
+
     /**
      * @return id
      */

@@ -73,8 +73,17 @@ public class PrivilegeServiceImpl implements PrivilegeService {
         privilegeEditDto.getMenuIds().forEach(m -> {
             MenuPrivilege menuPrivilege = new MenuPrivilege();
             menuPrivilege.setMenuId(m);
+            menuPrivilege.setCheckState(1);
             list.add(menuPrivilege);
         });
+        if(null != privilegeEditDto.getRelaMenuIds() && privilegeEditDto.getRelaMenuIds().size() > 0) {
+            privilegeEditDto.getRelaMenuIds().forEach(m -> {
+                MenuPrivilege menuPrivilege = new MenuPrivilege();
+                menuPrivilege.setMenuId(m);
+                menuPrivilege.setCheckState(0);
+                list.add(menuPrivilege);
+            });
+        }
         int result = privilegeManager.save(privilege, list);
         if(result <= 0)
             throw new SPIException(BasicEcode.SAVE_ERROR);
@@ -88,8 +97,18 @@ public class PrivilegeServiceImpl implements PrivilegeService {
             MenuPrivilege menuPrivilege = new MenuPrivilege();
             menuPrivilege.setPrivilegeId(privilege.getId());
             menuPrivilege.setMenuId(m);
+            menuPrivilege.setCheckState(1);
             list.add(menuPrivilege);
         });
+        if(null != privilegeEditDto.getRelaMenuIds() && privilegeEditDto.getRelaMenuIds().size() > 0) {
+            privilegeEditDto.getRelaMenuIds().forEach(m -> {
+                MenuPrivilege menuPrivilege = new MenuPrivilege();
+                menuPrivilege.setPrivilegeId(privilege.getId());
+                menuPrivilege.setMenuId(m);
+                menuPrivilege.setCheckState(0);
+                list.add(menuPrivilege);
+            });
+        }
         int result = privilegeManager.update(privilege, list);
         if(result <= 0)
             throw new SPIException(BasicEcode.UPDATE_ERROR);
@@ -105,14 +124,22 @@ public class PrivilegeServiceImpl implements PrivilegeService {
     public PrivilegeEditDto getEditDetail(Integer id) throws SPIException {
         Privilege privilege = privilegeManager.selectByKey(id);
         PrivilegeEditDto privilegeEdit = BeanMapper.map(privilege, PrivilegeEditDto.class);
-        // 菜单
+        // 查找选中的菜单
         MenuPrivilege query = new MenuPrivilege();
         query.setPrivilegeId(id);
+        query.setCheckState(1);
         List<MenuPrivilege> menuPrivs = menuPrivilegeManager.selectList(query);
         if(null != menuPrivs && menuPrivs.size() > 0)
             privilegeEdit.setMenuIds(menuPrivs.stream()
                                                 .map(MenuPrivilege::getMenuId)
                                                 .collect(Collectors.toList()) );
+        // 查找联动的菜单
+        query.setCheckState(0);
+        menuPrivs = menuPrivilegeManager.selectList(query);
+        if(null != menuPrivs && menuPrivs.size() > 0)
+            privilegeEdit.setRelaMenuIds(menuPrivs.stream()
+                                    .map(MenuPrivilege::getMenuId)
+                                    .collect(Collectors.toList()) );
         return privilegeEdit;
     }
 

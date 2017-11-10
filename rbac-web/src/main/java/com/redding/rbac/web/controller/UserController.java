@@ -95,5 +95,4 @@ public class UserController {
         userService.updateState(id, state, SessionUtils.getUserAuth().getEnterpriseId());
     }
 
-
 }

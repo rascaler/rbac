@@ -103,6 +103,7 @@ public class KaptchaConfig extends WebMvcConfigurerAdapter {
 //        servlet.addInitParameter("kaptcha.background.clear.from", from); //和登录框背景颜色一致
 //        servlet.addInitParameter("kaptcha.background.clear.to", to);
 
+        servlet.addInitParameter("kaptcha.session.key", "securityCode");
         servlet.addInitParameter("kaptcha.textproducer.char.length", "4");
         servlet.addInitParameter("kaptcha.textproducer.font.color", "red");
         servlet.addInitParameter("kaptcha.textproducer.font.size", "25");

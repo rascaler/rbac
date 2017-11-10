@@ -6,6 +6,7 @@ import com.redding.rbac.commons.constant.BasicEcode;
 import com.redding.rbac.commons.constant.RbacEcode;
 import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.pojo.dto.*;
+import com.redding.rbac.commons.pojo.dto.auth.LoginForm;
 import com.redding.rbac.commons.pojo.dto.auth.RoleAuthDto;
 import com.redding.rbac.commons.pojo.dto.auth.UserAuthDto;
 import com.redding.rbac.commons.pojo.query.UserQuery;
@@ -142,5 +143,17 @@ public class UserServiceImpl implements UserService {
         // todo 获取权限
         role1.setPrivileges(new ArrayList<String>(){{ add("admin:role"); }});
         return userAuth;
+    }
+
+    @Override
+    public boolean validateUser(LoginForm loginForm) throws SPIException {
+        User query = new User();
+        query.setUsername(loginForm.getUsername());
+        query.setPassword(loginForm.getPassword());
+        User user = userManager.selectOne(query);
+        if(null == user)
+            return false;
+        else
+            return true;
     }
 }

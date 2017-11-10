@@ -3,6 +3,7 @@ package com.redding.rbac.service;
 
 import com.github.pagehelper.PageInfo;
 import com.redding.rbac.commons.exception.SPIException;
+import com.redding.rbac.commons.pojo.dto.auth.LoginForm;
 import com.redding.rbac.commons.pojo.dto.auth.UserAuthDto;
 import com.redding.rbac.commons.pojo.dto.UserDetailDto;
 import com.redding.rbac.commons.pojo.dto.UserDto;
@@ -59,4 +60,7 @@ public interface UserService {
      * @return
      */
     UserAuthDto getUserAuth(String username);
+
+    boolean validateUser(LoginForm loginForm) throws SPIException;
+
 }

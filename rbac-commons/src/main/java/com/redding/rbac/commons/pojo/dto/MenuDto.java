@@ -32,4 +32,6 @@ public class MenuDto implements Serializable {
     private String description;
 
     private String code;
+
+    private Integer level;
 }

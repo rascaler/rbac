@@ -47,4 +47,7 @@ public class Menu {
 
     @Column(name = "code")
     private String code;
+
+    @Column(name = "level")
+    private Integer level;
 }

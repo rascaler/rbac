@@ -41,4 +41,7 @@ public class MenuEditDto implements Serializable {
 
     @NotEmpty(groups = {Add.class, Update.class}, message = "编码不能为空")
     private String code;
+
+    @NotNull(groups = {Add.class, Update.class}, message = "菜单级别")
+    private Integer level;
 }

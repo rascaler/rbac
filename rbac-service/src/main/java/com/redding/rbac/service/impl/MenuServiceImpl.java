@@ -3,6 +3,7 @@ package com.redding.rbac.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.redding.rbac.commons.constant.BasicEcode;
+import com.redding.rbac.commons.constant.RbacEcode;
 import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.pojo.dto.MenuDto;
 import com.redding.rbac.commons.pojo.dto.MenuEditDto;
@@ -41,6 +42,7 @@ public class MenuServiceImpl implements MenuService {
             criteria.andLike("name", query.getName() + "%");
         if(StringUtils.isNotEmpty(query.getCode()))
             criteria.andEqualTo("code", query.getCode());
+        criteria.andEqualTo("appId", query.getAppId());
         PageHelper.startPage(pageParams.getPageNum(), pageParams.getPageSize());
         List<Menu> menus = menuManager.selectByExample(example);
         PageInfo pageInfo = new PageInfo(menus);
@@ -59,6 +61,12 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public void removeMenu(Integer id) throws SPIException {
+        // 判断当前菜单是否有子节点
+        Menu query = new Menu();
+        query.setParentId(id);
+        Menu firstChild = menuManager.selectFirst(query);
+        if(null != firstChild)
+            throw new SPIException(RbacEcode.MENU_HAS_CHILDREN);
         if(menuManager.removeMenu(id) <= 0)
             throw new SPIException(BasicEcode.DELETE_ERROR);
     }

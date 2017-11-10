@@ -49,6 +49,9 @@ public class RbacEcode implements Serializable {
     /** 权限不存在 */
     public final static String PRIVILEGE_NOT_EXISTS = "100040001";
 
+    ///////////////////////////// menu  10005
+    public final static String MENU_HAS_CHILDREN = "100050001";
+
 
 
 }

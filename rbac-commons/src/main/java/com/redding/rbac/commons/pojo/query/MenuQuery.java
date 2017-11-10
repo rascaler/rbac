@@ -18,7 +18,11 @@ public class MenuQuery extends BasePoJo{
     private String name;
 
     /**
-     * 角色状态
+     * 编码
      */
+    @EmptyToNullFormat
     private String code;
+
+
+    private Integer appId;
 }

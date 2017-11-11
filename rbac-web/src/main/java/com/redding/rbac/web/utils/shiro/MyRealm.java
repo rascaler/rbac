@@ -44,16 +44,20 @@ public class MyRealm extends AuthorizingRealm{
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+        UsernamePasswordCaptchaToken token = (UsernamePasswordCaptchaToken) authenticationToken;
         String username = token.getUsername();
-        if(StringUtils.isNotEmpty(username)){
-            UserAuthDto userAuth = userService.getUserAuth(username);
-            if(null == userAuth || !userAuth.getPassword().equals(new String(token.getPassword())))
-                throw new SPIException(BasicEcode.USER_ERR_LOGIN);
-            SecurityUtils.getSubject().getSession().setAttribute("userAuth", userAuth);
-            return new SimpleAuthenticationInfo(userAuth.getUsername(), userAuth.getPassword(), getName());
-        }
-        return null;
+        String code = (String)SecurityUtils.getSubject().getSession().getAttribute("securityCode");
+        if(StringUtils.isEmpty(token.getCaptcha()) || StringUtils.isEmpty(code) || !token.getCaptcha().equals(code)) //验证码错误
+            throw new SPIException(BasicEcode.SECURITY_CODE_ERROR);
+        if(StringUtils.isEmpty(token.getUsername())) //账号错误
+            throw new SPIException(BasicEcode.USER_ERR_LOGIN);
+        if(null == token.getPassword() || token.getPassword().length == 0) //密码错误
+            throw new SPIException(BasicEcode.USER_ERR_LOGIN);
+        UserAuthDto userAuth = userService.getUserAuth(username);
+        if(null == userAuth || !userAuth.getPassword().equals(new String(token.getPassword())))
+            throw new SPIException(BasicEcode.USER_ERR_LOGIN);
+        SecurityUtils.getSubject().getSession().setAttribute("userAuth", userAuth);
+        return new SimpleAuthenticationInfo(userAuth.getUsername(), userAuth.getPassword(), getName());
     }
 
 }

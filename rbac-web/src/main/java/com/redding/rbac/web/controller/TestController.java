@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.redding.rbac.commons.constant.BasicEcode;
+import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.utils.json.DateJsonDeserializer;
 import com.redding.rbac.service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +51,7 @@ public class TestController {
     @RequestMapping(value = "/test4",method = RequestMethod.GET)
     @ResponseBody
     String test4() {
-        return "Hello World4!";
+        throw new SPIException(BasicEcode.FAILED);
     }
 
 

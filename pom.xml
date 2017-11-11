@@ -130,6 +130,11 @@
                 <artifactId>kaptcha</artifactId>
                 <version>2.3.2</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.40</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -146,6 +151,7 @@
                 <cors.enable>true</cors.enable>
                 <login.required>true</login.required>
                 <login.username>admin</login.username>
+                <login.url>http://localhost:8888/</login.url>
             </properties>
         </profile>
     </profiles>

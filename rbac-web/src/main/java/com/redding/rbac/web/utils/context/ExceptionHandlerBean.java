@@ -4,6 +4,8 @@ import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.web.utils.bean.OuterResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.MethodNotSupportedException;
+import org.apache.shiro.authz.HostUnauthorizedException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
@@ -153,6 +155,20 @@ public class ExceptionHandlerBean implements Ordered {
         OuterResult outerResult = new OuterResult("Http Media Type Not Supported");
         return outerResult;
     }
+
+	/**
+	 * 没有权限
+	 * @param req
+	 * @param e
+	 * @return
+	 */
+	@ExceptionHandler(value = {UnauthorizedException.class, HostUnauthorizedException.class})
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	@ResponseBody
+	public OuterResult handleUnauthorizedException(HttpServletRequest req, UnauthorizedException e) {
+		OuterResult outerResult = new OuterResult("您没有权限做此操作");
+		return outerResult;
+	}
 
 	/**
 	 * HTTP方法不支持

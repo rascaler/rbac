@@ -16,8 +16,11 @@ import com.redding.rbac.commons.utils.validation.Update;
 import com.redding.rbac.service.UserService;
 import com.redding.rbac.web.utils.SessionUtils;
 import com.redding.rbac.web.utils.annotation.OuterResponseBody;
+import com.redding.rbac.web.utils.shiro.UsernamePasswordCaptchaToken;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -38,21 +41,6 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @OuterResponseBody
-    UserAuthDto login(@Validated LoginForm loginForm){
-        //先验证验证码
-        String code = (String)SecurityUtils.getSubject().getSession().getAttribute("securityCode");
-        if(StringUtils.isEmpty(code))
-            throw new SPIException(BasicEcode.FAILED);
-        if(!loginForm.getSecurityCode().equals(code))
-            throw new SPIException(BasicEcode.FAILED);
-        if(userService.validateUser(loginForm)) {
-            SecurityUtils.getSubject().getSession().setAttribute("userAuth", userService.getUserAuth(loginForm.getUsername()));
-        }
-        return SessionUtils.getUserAuth();
-    }
-
     @RequestMapping(method = RequestMethod.GET)
     @OuterResponseBody
     boolean auth(){
@@ -61,6 +49,14 @@ public class AuthController {
         } else {
             return false;
         }
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @OuterResponseBody
+    UserAuthDto login(@Validated LoginForm loginForm){
+        UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken(loginForm.getUsername(), loginForm.getPassword(), loginForm.getSecurityCode(), true);
+        SecurityUtils.getSubject().login(token);
+        return SessionUtils.getUserAuth();
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)

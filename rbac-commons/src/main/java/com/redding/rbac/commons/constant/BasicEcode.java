@@ -43,6 +43,11 @@ public class BasicEcode implements Serializable {
     /* 该账号已在其他地方登录 */
     public final static String USER_ACCOUNT_KICK_OUT = "10005";
 
+    /* 验证码错误 */
+    public final static String SECURITY_CODE_ERROR = "10006";
+
+    public final static String SESSION_TIMEOUT = "10007";
+
     /* 没有权限 */
     public final static String PERMISSION_DENIED = "11001";
 

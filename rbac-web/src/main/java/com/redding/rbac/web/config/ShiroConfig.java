@@ -3,8 +3,7 @@ package com.redding.rbac.web.config;
 import com.redding.rbac.commons.constant.BasicEcode;
 import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.pojo.dto.auth.UserAuthDto;
-import com.redding.rbac.web.utils.shiro.MyRealm;
-import com.redding.rbac.web.utils.shiro.AutoLoginFilter;
+import com.redding.rbac.web.utils.shiro.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -42,6 +41,12 @@ public class ShiroConfig implements EnvironmentAware{
 
 //    @Value("${login.required}")
     private boolean loginRequired;
+
+    private String loginUrl;
+
+    private String successUrl;
+
+    public static boolean corsEnable;
 
     @Bean
     public MyRealm myRealm() {
@@ -87,15 +92,18 @@ public class ShiroConfig implements EnvironmentAware{
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(getDefaultWebSecurityManager());
-        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setLoginUrl("http://localhost:8888/");
         shiroFilterFactoryBean.setSuccessUrl("/sa/index");
         if(!loginRequired) {
-//            shiroFilterFactoryBean.getFilters().put("autoLogin", new AutoLoginFilter());
-//            filterChainDefinitionMap.put("/*", "autoLogin");
             filterChainDefinitionMap.put("/**", "anon");
         }
+        // 自定义过滤器，以验证不通过以json形式返回结果
+        shiroFilterFactoryBean.getFilters().put("authc", new CustomFormAuthenticationFilter());
+        shiroFilterFactoryBean.getFilters().put("perms", new CustomPermissionsAuthorizationFilter());
+        shiroFilterFactoryBean.getFilters().put("roles", new CustomRolesAuthorizationFilter());
         filterChainDefinitionMap.put("/role/**", "authc,perms[admin:role]");
         filterChainDefinitionMap.put("/user/**", "authc,perms[admin:user]");
+        filterChainDefinitionMap.put("/app/**", "authc,perms[admin:user]");
         filterChainDefinitionMap.put("/**", "anon");
         shiroFilterFactoryBean
                 .setFilterChainDefinitionMap(filterChainDefinitionMap);
@@ -110,5 +118,22 @@ public class ShiroConfig implements EnvironmentAware{
             throw new SPIException(BasicEcode.FAILED);
         }
         loginRequired = new Boolean(loginRequiredStr);
+
+        loginUrl = env.getProperty("login.url");
+        if(StringUtils.isEmpty(loginUrl)){
+            log.error("property login.url cannot be null");
+            throw new SPIException(BasicEcode.FAILED);
+        }
+
+        successUrl = env.getProperty("success.url");
+        if(StringUtils.isEmpty(successUrl)){
+            log.error("property success.url cannot be null");
+            throw new SPIException(BasicEcode.FAILED);
+        }
+
+        // 默认关闭跨域
+        String corsEnableStr = env.getProperty("cors.enable");
+        if(StringUtils.isNotEmpty(corsEnableStr))
+            corsEnable = new Boolean(corsEnableStr);
     }
 }

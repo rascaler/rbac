@@ -26,9 +26,6 @@ import javax.servlet.ServletException;
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter{
 
-    @Value("${cors.enable}")
-    private boolean corsEnable;
-
     @Bean
     ApplicationContextUtils applicationContextUtils(){return new ApplicationContextUtils();}
 
@@ -47,29 +44,13 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
         return new SessionUtils();
     }
 
-//    @Bean
-//    public ServletRegistrationBean servletRegistrationBean() throws ServletException{
-//        return new ServletRegistrationBean(new KaptchaServlet(),"/images/kaptcha.jpg");
-//    }
-
-
     @Override
     public void addFormatters(FormatterRegistry registry) {
         EmptyToNullFormatAnnotationFormatterFactory annoFormater =new EmptyToNullFormatAnnotationFormatterFactory();
         registry.addFormatterForFieldAnnotation(annoFormater);
     }
 
-    //跨域配置，用于开发环境
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        if(corsEnable)
-            registry.addMapping("/**")
-                    .allowedOrigins("*")
-                    .allowCredentials(true)
-                    .allowedMethods("GET", "POST", "DELETE", "PUT", "OPTION")
-                    .allowedHeaders("Authorization","x-requested-with","Content-Type","Accept")
-                    .maxAge(3600);
-    }
+
 
 }
 

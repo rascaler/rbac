@@ -22,13 +22,6 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
         HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
         HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
-        // 这里也要开启跨域
-        if(ShiroConfig.corsEnable) {
-            httpServletResponse.setHeader("Access-Control-Allow-Credentials","true");
-            httpServletResponse.setHeader("Access-Control-Allow-Origin",httpServletRequest.getHeader("Origin"));
-            httpServletResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-            httpServletResponse.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-        }
         return super.isAccessAllowed(request, response, mappedValue);
     }
 

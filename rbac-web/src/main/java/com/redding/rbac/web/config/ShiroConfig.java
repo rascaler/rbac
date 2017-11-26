@@ -46,8 +46,6 @@ public class ShiroConfig implements EnvironmentAware{
 
     private String successUrl;
 
-    public static boolean corsEnable;
-
     @Bean
     public MyRealm myRealm() {
         return new MyRealm();
@@ -130,10 +128,5 @@ public class ShiroConfig implements EnvironmentAware{
             log.error("property success.url cannot be null");
             throw new SPIException(BasicEcode.FAILED);
         }
-
-        // 默认关闭跨域
-        String corsEnableStr = env.getProperty("cors.enable");
-        if(StringUtils.isNotEmpty(corsEnableStr))
-            corsEnable = new Boolean(corsEnableStr);
     }
 }

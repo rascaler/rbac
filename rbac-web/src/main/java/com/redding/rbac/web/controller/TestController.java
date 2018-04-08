@@ -8,6 +8,7 @@ import com.redding.rbac.commons.constant.BasicEcode;
 import com.redding.rbac.commons.exception.SPIException;
 import com.redding.rbac.commons.utils.json.DateJsonDeserializer;
 import com.redding.rbac.service.EnterpriseService;
+import com.redding.rbac.web.utils.annotation.OuterResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -52,6 +53,12 @@ public class TestController {
     @ResponseBody
     String test4() {
         throw new SPIException(BasicEcode.FAILED);
+    }
+
+    @RequestMapping(value = "/test5",method = RequestMethod.GET)
+    @OuterResponseBody
+    String test5() {
+        return null;
     }
 
 

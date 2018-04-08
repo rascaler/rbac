@@ -38,5 +38,9 @@ public class AppController {
     }
 
 
-
+    @RequestMapping(value = "/getOne", method = RequestMethod.GET)
+    @OuterResponseBody
+    AppDto getOne() {
+        return appService.getOne();
+    }
 }

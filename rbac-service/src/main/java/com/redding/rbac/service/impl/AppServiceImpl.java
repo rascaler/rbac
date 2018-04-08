@@ -18,4 +18,9 @@ public class AppServiceImpl implements AppService {
     public List<AppDto> getAll() {
         return BeanMapper.mapList(appManager.selectAll(), AppDto.class);
     }
+
+    @Override
+    public AppDto getOne() {
+        return null;
+    }
 }
